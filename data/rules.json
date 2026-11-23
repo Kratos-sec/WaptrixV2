@@ -1,0 +1,1118 @@
+{
+  "version": "2025.1",
+  "standard": "OWASP Top 10:2025",
+  "wstg_version": "4.2",
+  "cvss_version": "3.1",
+  "categories": {
+    "A01:2025": {
+      "name": "Broken Access Control",
+      "coverage": "partial",
+      "passive_scope": "Permissive CORS response headers and sensitive paths advertised in robots.txt. Authorization logic itself requires authenticated manual testing.",
+      "description": "Users can act outside their intended permissions: reading or changing other users' data, reaching admin functions, or calling APIs without the right authorization.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-ATHZ-02",
+          "title": "Bypassing the authorization schema"
+        },
+        {
+          "wstg": "WSTG-ATHZ-03",
+          "title": "Privilege escalation"
+        },
+        {
+          "wstg": "WSTG-ATHZ-04",
+          "title": "Insecure direct object references"
+        },
+        {
+          "wstg": "WSTG-ATHZ-01",
+          "title": "Directory traversal and file include"
+        },
+        {
+          "wstg": "WSTG-SESS-05",
+          "title": "Confirm cross-site request forgery exposure"
+        }
+      ]
+    },
+    "A02:2025": {
+      "name": "Security Misconfiguration",
+      "coverage": "high",
+      "passive_scope": "Missing or weak security headers, verbose banners, debug modes and missing security.txt.",
+      "description": "The application, server or framework runs with insecure defaults, unneeded features, verbose errors or missing hardening.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-CONF-02",
+          "title": "Application platform configuration review"
+        },
+        {
+          "wstg": "WSTG-CONF-04",
+          "title": "Old, backup and unreferenced files"
+        },
+        {
+          "wstg": "WSTG-CONF-05",
+          "title": "Administrative interface enumeration"
+        },
+        {
+          "wstg": "WSTG-CONF-06",
+          "title": "HTTP methods"
+        },
+        {
+          "wstg": "WSTG-CONF-11",
+          "title": "Cloud storage permissions"
+        }
+      ]
+    },
+    "A03:2025": {
+      "name": "Software Supply Chain Failures",
+      "coverage": "partial",
+      "passive_scope": "Client-side JavaScript libraries fingerprinted from script URLs and matched against known-vulnerable versions. Server-side dependencies are not observable.",
+      "description": "Vulnerable, unmaintained or compromised third-party components, dependencies or build pipelines end up in the running application.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-INFO-10",
+          "title": "Map application architecture and components"
+        },
+        {
+          "wstg": null,
+          "title": "Server-side dependency audit (SCA / SBOM)"
+        },
+        {
+          "wstg": null,
+          "title": "CI/CD pipeline and artifact provenance review"
+        }
+      ]
+    },
+    "A04:2025": {
+      "name": "Cryptographic Failures",
+      "coverage": "high",
+      "passive_scope": "Negotiated TLS protocol and cipher, certificate validity, HTTPS enforcement, HSTS, mixed content and cookie transport flags.",
+      "description": "Sensitive data is exposed because encryption is missing, weak, misconfigured or relies on broken algorithms.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-CRYP-04",
+          "title": "Weak encryption in application logic"
+        },
+        {
+          "wstg": "WSTG-CRYP-02",
+          "title": "Padding oracle"
+        },
+        {
+          "wstg": null,
+          "title": "Encryption at rest and key management review"
+        }
+      ]
+    },
+    "A05:2025": {
+      "name": "Injection",
+      "coverage": "indicators",
+      "passive_scope": "Only defense-in-depth indicators (CSP, X-Content-Type-Options). Injection flaws cannot be confirmed without active payloads, so a clean result requires manual review.",
+      "description": "Untrusted input reaches an interpreter (SQL, OS shell, templates, browser DOM) and is executed as code or commands.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-INPV-01",
+          "title": "Reflected cross-site scripting"
+        },
+        {
+          "wstg": "WSTG-INPV-02",
+          "title": "Stored cross-site scripting"
+        },
+        {
+          "wstg": "WSTG-INPV-05",
+          "title": "SQL injection"
+        },
+        {
+          "wstg": "WSTG-INPV-12",
+          "title": "Command injection"
+        },
+        {
+          "wstg": "WSTG-INPV-18",
+          "title": "Server-side template injection"
+        },
+        {
+          "wstg": "WSTG-INPV-19",
+          "title": "Server-side request forgery"
+        }
+      ]
+    },
+    "A06:2025": {
+      "name": "Insecure Design",
+      "coverage": "partial",
+      "passive_scope": "Insecure form transport and missing anti-CSRF token patterns visible in HTML.",
+      "description": "Flaws in the design itself, such as missing threat modelling, absent anti-automation or business logic that can be abused even when perfectly implemented.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-BUSL-01",
+          "title": "Business logic data validation"
+        },
+        {
+          "wstg": "WSTG-BUSL-05",
+          "title": "Limits on how often a function can be used"
+        },
+        {
+          "wstg": "WSTG-BUSL-07",
+          "title": "Defenses against application misuse"
+        },
+        {
+          "wstg": null,
+          "title": "Threat model review"
+        }
+      ]
+    },
+    "A07:2025": {
+      "name": "Authentication Failures",
+      "coverage": "partial",
+      "passive_scope": "Session cookie hardening, cleartext credential submission and caching of authenticated responses.",
+      "description": "Weak login, session or credential handling lets attackers impersonate users: credential stuffing, weak passwords, session fixation or token theft.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-ATHN-02",
+          "title": "Default credentials"
+        },
+        {
+          "wstg": "WSTG-ATHN-03",
+          "title": "Weak lockout mechanism"
+        },
+        {
+          "wstg": "WSTG-ATHN-07",
+          "title": "Weak password policy"
+        },
+        {
+          "wstg": "WSTG-SESS-03",
+          "title": "Session fixation"
+        },
+        {
+          "wstg": "WSTG-SESS-06",
+          "title": "Logout functionality"
+        }
+      ]
+    },
+    "A08:2025": {
+      "name": "Software or Data Integrity Failures",
+      "coverage": "high",
+      "passive_scope": "Third-party scripts and stylesheets loaded without Subresource Integrity.",
+      "description": "Code or data is trusted without verifying its integrity: unsigned updates, unverified third-party scripts, insecure deserialization.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-BUSL-09",
+          "title": "Upload of malicious files"
+        },
+        {
+          "wstg": null,
+          "title": "Insecure deserialization review"
+        },
+        {
+          "wstg": null,
+          "title": "Update and artifact signing review"
+        }
+      ]
+    },
+    "A09:2025": {
+      "name": "Security Logging and Alerting Failures",
+      "coverage": "manual",
+      "passive_scope": "Not verifiable through passive HTTP/TLS inspection. Always flagged as Manual Review Required.",
+      "description": "Security-relevant events are not logged, monitored or alerted on, so attacks go unnoticed.",
+      "manual_tests": [
+        {
+          "wstg": null,
+          "title": "Verify logins, access-control failures and input validation failures are logged with context"
+        },
+        {
+          "wstg": null,
+          "title": "Verify alert thresholds and incident escalation"
+        },
+        {
+          "wstg": null,
+          "title": "Review log retention and tamper protection"
+        }
+      ]
+    },
+    "A10:2025": {
+      "name": "Mishandling of Exceptional Conditions",
+      "coverage": "partial",
+      "passive_scope": "Raw stack traces, framework exception dumps and debug error pages returned in responses.",
+      "description": "Errors and unusual conditions are handled unsafely: leaking internals, failing open, or leaving inconsistent state.",
+      "manual_tests": [
+        {
+          "wstg": "WSTG-ERRH-01",
+          "title": "Improper error handling (induced errors)"
+        },
+        {
+          "wstg": null,
+          "title": "Fail-open behaviour under resource exhaustion"
+        },
+        {
+          "wstg": null,
+          "title": "Transaction rollback on partial failure"
+        }
+      ]
+    }
+  },
+  "rules": {
+    "HDR-CSP-MISSING": {
+      "title": "Content-Security-Policy header missing",
+      "check": "headers",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-693",
+      "cwe_name": "Protection Mechanism Failure",
+      "wstg": "WSTG-CONF-12",
+      "owasp": [
+        "A02:2025",
+        "A05:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+      "description": "The HTML response does not define a Content-Security-Policy. Without CSP the browser has no policy to restrict script sources, which removes an important mitigation against cross-site scripting and data injection.",
+      "remediation": "Deploy a restrictive Content-Security-Policy (start with default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self') and tighten it with nonces or hashes. Roll out using Content-Security-Policy-Report-Only first.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/12-Test_for_Content_Security_Policy",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html"
+      ]
+    },
+    "HDR-CSP-WEAK": {
+      "title": "Content-Security-Policy allows unsafe sources",
+      "check": "headers",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-693",
+      "cwe_name": "Protection Mechanism Failure",
+      "wstg": "WSTG-CONF-12",
+      "owasp": [
+        "A02:2025",
+        "A05:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+      "description": "The Content-Security-Policy contains directives such as 'unsafe-inline', 'unsafe-eval', wildcard sources or plain http: sources in script-related directives, significantly reducing its effectiveness against XSS.",
+      "remediation": "Remove 'unsafe-inline' and 'unsafe-eval' from script-src/default-src, replace wildcards with explicit origins and use nonce- or hash-based allowlisting with 'strict-dynamic'.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
+        "https://csp-evaluator.withgoogle.com/"
+      ]
+    },
+    "HDR-HSTS-MISSING": {
+      "title": "Strict-Transport-Security header missing",
+      "check": "headers",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CONF-07",
+      "owasp": [
+        "A04:2025",
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N",
+      "description": "The HTTPS response does not include a Strict-Transport-Security header. Users who type the bare hostname or follow http:// links can be downgraded by an on-path attacker (SSL stripping).",
+      "remediation": "Send 'Strict-Transport-Security: max-age=31536000; includeSubDomains' on every HTTPS response and consider HSTS preloading once all subdomains support HTTPS.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/07-Test_HTTP_Strict_Transport_Security",
+        "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+      ]
+    },
+    "HDR-HSTS-WEAK": {
+      "title": "Strict-Transport-Security max-age too short",
+      "check": "headers",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CONF-07",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+      "description": "The Strict-Transport-Security policy uses a max-age below 180 days (15552000 seconds) or disables HSTS with max-age=0, giving only brief or no protection against protocol downgrade.",
+      "remediation": "Increase max-age to at least 31536000 (one year) and include includeSubDomains where possible.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+      ]
+    },
+    "HDR-XFO-MISSING": {
+      "title": "Clickjacking protection missing (X-Frame-Options / frame-ancestors)",
+      "check": "headers",
+      "severity": "low",
+      "confidence": "firm",
+      "cwe": "CWE-1021",
+      "cwe_name": "Improper Restriction of Rendered UI Layers or Frames",
+      "wstg": "WSTG-CLNT-09",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+      "description": "The HTML response sets neither X-Frame-Options nor a CSP frame-ancestors directive, so the page may be framed by any origin and abused for clickjacking.",
+      "remediation": "Send 'Content-Security-Policy: frame-ancestors 'self'' (preferred) and/or 'X-Frame-Options: DENY' or 'SAMEORIGIN'.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/09-Testing_for_Clickjacking",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html"
+      ]
+    },
+    "HDR-XCTO-MISSING": {
+      "title": "X-Content-Type-Options header missing",
+      "check": "headers",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-693",
+      "cwe_name": "Protection Mechanism Failure",
+      "wstg": "WSTG-CONF-14",
+      "owasp": [
+        "A02:2025",
+        "A05:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+      "description": "The response does not include 'X-Content-Type-Options: nosniff'. Browsers may MIME-sniff responses and interpret user-controlled content as script or HTML.",
+      "remediation": "Send 'X-Content-Type-Options: nosniff' on all responses and ensure accurate Content-Type headers.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-content-type-options"
+      ]
+    },
+    "HDR-REFERRER-MISSING": {
+      "title": "Referrer-Policy header missing",
+      "check": "headers",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-200",
+      "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "wstg": "WSTG-CONF-14",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+      "description": "No Referrer-Policy is defined. Modern browsers default to strict-origin-when-cross-origin, but older clients may leak full URLs (including tokens in query strings) to third parties.",
+      "remediation": "Send 'Referrer-Policy: strict-origin-when-cross-origin' or 'no-referrer' for sensitive applications.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#referrer-policy"
+      ]
+    },
+    "HDR-PERMISSIONS-MISSING": {
+      "title": "Permissions-Policy header missing",
+      "check": "headers",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-693",
+      "cwe_name": "Protection Mechanism Failure",
+      "wstg": "WSTG-CONF-14",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+      "description": "No Permissions-Policy is defined, so powerful browser features (camera, microphone, geolocation, payment) are not explicitly restricted for this origin and embedded frames.",
+      "remediation": "Send a Permissions-Policy disabling unused features, e.g. 'Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()'.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#permissions-policy-formerly-feature-policy"
+      ]
+    },
+    "TLS-NO-HTTPS": {
+      "title": "HTTPS not available",
+      "check": "transport_tls",
+      "severity": "high",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CRYP-03",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
+      "description": "The host serves content over plain HTTP but no working HTTPS endpoint was observed. All traffic, including cookies and credentials, travels in cleartext.",
+      "remediation": "Provision a valid TLS certificate, serve the application exclusively over HTTPS and redirect all HTTP requests with a 301 to the HTTPS origin.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/03-Testing_for_Sensitive_Information_Sent_via_Unencrypted_Channels"
+      ]
+    },
+    "TLS-NO-REDIRECT": {
+      "title": "HTTP does not redirect to HTTPS",
+      "check": "transport_tls",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CRYP-03",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N",
+      "description": "The plain HTTP endpoint returns content instead of redirecting to HTTPS, allowing users to browse the application unencrypted.",
+      "remediation": "Return a 301/308 redirect from every http:// URL to the equivalent https:// URL and enable HSTS.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
+      ]
+    },
+    "TLS-DEPRECATED-PROTOCOL": {
+      "title": "Deprecated TLS protocol supported",
+      "check": "transport_tls",
+      "severity": "high",
+      "confidence": "certain",
+      "cwe": "CWE-326",
+      "cwe_name": "Inadequate Encryption Strength",
+      "wstg": "WSTG-CRYP-01",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "description": "The server negotiated or accepted TLS 1.0/1.1 (or older). These protocols are deprecated by RFC 8996 and lack modern cryptographic protections.",
+      "remediation": "Disable SSLv3, TLS 1.0 and TLS 1.1. Support TLS 1.2 with AEAD cipher suites and TLS 1.3.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_Transport_Layer_Security",
+        "https://datatracker.ietf.org/doc/html/rfc8996"
+      ]
+    },
+    "TLS-WEAK-CIPHER": {
+      "title": "Weak TLS cipher suite negotiated",
+      "check": "transport_tls",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-327",
+      "cwe_name": "Use of a Broken or Risky Cryptographic Algorithm",
+      "wstg": "WSTG-CRYP-01",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "description": "The cipher suite negotiated with a standard client uses a broken or legacy algorithm (RC4, DES/3DES, NULL, EXPORT, anonymous key exchange or MD5) or an effective key length below 128 bits.",
+      "remediation": "Restrict the server to AEAD cipher suites (AES-GCM, ChaCha20-Poly1305) with forward secrecy (ECDHE).",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
+      ]
+    },
+    "TLS-CERT-EXPIRED": {
+      "title": "TLS certificate expired or not yet valid",
+      "check": "transport_tls",
+      "severity": "high",
+      "confidence": "certain",
+      "cwe": "CWE-298",
+      "cwe_name": "Improper Validation of Certificate Expiration",
+      "wstg": "WSTG-CRYP-01",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+      "description": "The certificate presented by the server is outside its validity window. Browsers show interstitial warnings, training users to click through certificate errors.",
+      "remediation": "Renew the certificate immediately and automate renewal (e.g. ACME) with expiry monitoring.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+      ]
+    },
+    "TLS-CERT-EXPIRING": {
+      "title": "TLS certificate expires within 30 days",
+      "check": "transport_tls",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-298",
+      "cwe_name": "Improper Validation of Certificate Expiration",
+      "wstg": "WSTG-CRYP-01",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L",
+      "description": "The server certificate will expire soon. Unless renewed, users will receive certificate errors and service availability will be impacted.",
+      "remediation": "Renew the certificate and ensure automated renewal with alerting at least 30 days before expiry.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+      ]
+    },
+    "TLS-CERT-HOSTNAME-MISMATCH": {
+      "title": "TLS certificate hostname mismatch",
+      "check": "transport_tls",
+      "severity": "high",
+      "confidence": "certain",
+      "cwe": "CWE-297",
+      "cwe_name": "Improper Validation of Certificate with Host Mismatch",
+      "wstg": "WSTG-CRYP-01",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+      "description": "None of the certificate's Subject Alternative Names (or Common Name) match the audited hostname, so clients cannot authenticate the server.",
+      "remediation": "Issue a certificate whose SAN list covers this hostname (or an appropriate wildcard) and deploy it on the correct virtual host / SNI configuration.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+      ]
+    },
+    "TLS-CERT-UNTRUSTED": {
+      "title": "TLS certificate not trusted",
+      "check": "transport_tls",
+      "severity": "high",
+      "confidence": "certain",
+      "cwe": "CWE-295",
+      "cwe_name": "Improper Certificate Validation",
+      "wstg": "WSTG-CRYP-01",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+      "description": "The certificate chain could not be validated against the public trust store (self-signed, unknown issuer or incomplete chain).",
+      "remediation": "Deploy a certificate issued by a publicly trusted CA and serve the complete intermediate chain.",
+      "references": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+      ]
+    },
+    "TLS-MIXED-CONTENT-ACTIVE": {
+      "title": "Active mixed content (scripts/frames/styles over HTTP)",
+      "check": "transport_tls",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CRYP-03",
+      "owasp": [
+        "A04:2025",
+        "A08:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:C/C:L/I:H/A:N",
+      "description": "The HTTPS page references scripts, stylesheets, iframes or other active resources over plain http://. An on-path attacker can tamper with these resources and take over the page.",
+      "remediation": "Load every sub-resource over https:// and add 'Content-Security-Policy: upgrade-insecure-requests' as a safety net.",
+      "references": [
+        "https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content"
+      ]
+    },
+    "TLS-MIXED-CONTENT-PASSIVE": {
+      "title": "Passive mixed content (images/media over HTTP)",
+      "check": "transport_tls",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CRYP-03",
+      "owasp": [
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+      "description": "The HTTPS page references images, audio or video over plain http://, leaking browsing activity and allowing content spoofing.",
+      "remediation": "Serve all media over https:// and enable 'upgrade-insecure-requests'.",
+      "references": [
+        "https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content"
+      ]
+    },
+    "CKE-NO-SECURE": {
+      "title": "Cookie without Secure flag",
+      "check": "cookies",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-614",
+      "cwe_name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+      "wstg": "WSTG-SESS-02",
+      "owasp": [
+        "A04:2025",
+        "A07:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "description": "A cookie is issued without the Secure attribute, so the browser will also transmit it over unencrypted HTTP connections where it can be intercepted.",
+      "remediation": "Set the Secure attribute on all cookies, and use the __Host- prefix for session cookies.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+      ]
+    },
+    "CKE-SESSION-NO-HTTPONLY": {
+      "title": "Session cookie without HttpOnly flag",
+      "check": "cookies",
+      "severity": "medium",
+      "confidence": "firm",
+      "cwe": "CWE-1004",
+      "cwe_name": "Sensitive Cookie Without 'HttpOnly' Flag",
+      "wstg": "WSTG-SESS-02",
+      "owasp": [
+        "A07:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "description": "A cookie whose name indicates a session or authentication token lacks the HttpOnly attribute, so any cross-site scripting flaw can steal it via document.cookie.",
+      "remediation": "Set HttpOnly on all session and authentication cookies.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+      ]
+    },
+    "CKE-NO-HTTPONLY": {
+      "title": "Cookie without HttpOnly flag",
+      "check": "cookies",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-1004",
+      "cwe_name": "Sensitive Cookie Without 'HttpOnly' Flag",
+      "wstg": "WSTG-SESS-02",
+      "owasp": [
+        "A07:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+      "description": "A cookie is issued without the HttpOnly attribute and is readable from JavaScript. If it carries sensitive state it can be stolen through XSS.",
+      "remediation": "Set HttpOnly on every cookie that does not need to be read by client-side script.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+      ]
+    },
+    "CKE-NO-SAMESITE": {
+      "title": "Cookie without SameSite attribute",
+      "check": "cookies",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-1275",
+      "cwe_name": "Sensitive Cookie with Improper SameSite Attribute",
+      "wstg": "WSTG-SESS-02",
+      "owasp": [
+        "A07:2025",
+        "A06:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
+      "description": "A cookie is issued without an explicit SameSite attribute. Browser defaults vary, and older clients will attach it to cross-site requests, increasing CSRF exposure.",
+      "remediation": "Set SameSite=Lax (or Strict for highly sensitive cookies) explicitly on every cookie.",
+      "references": [
+        "https://owasp.org/www-community/SameSite"
+      ]
+    },
+    "CKE-SAMESITE-NONE-INSECURE": {
+      "title": "SameSite=None cookie without Secure",
+      "check": "cookies",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-1275",
+      "cwe_name": "Sensitive Cookie with Improper SameSite Attribute",
+      "wstg": "WSTG-SESS-02",
+      "owasp": [
+        "A07:2025",
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+      "description": "A cookie declares SameSite=None without the Secure attribute. Modern browsers reject it; legacy browsers send it cross-site and over cleartext HTTP.",
+      "remediation": "Always pair SameSite=None with Secure, or use SameSite=Lax if cross-site delivery is not required.",
+      "references": [
+        "https://owasp.org/www-community/SameSite"
+      ]
+    },
+    "CKE-BROAD-DOMAIN": {
+      "title": "Cookie scoped to parent domain",
+      "check": "cookies",
+      "severity": "low",
+      "confidence": "firm",
+      "cwe": "CWE-668",
+      "cwe_name": "Exposure of Resource to Wrong Sphere",
+      "wstg": "WSTG-SESS-02",
+      "owasp": [
+        "A07:2025",
+        "A01:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+      "description": "A cookie's Domain attribute is set to a parent domain, so it will be sent to every sibling subdomain. A compromise of any less-secure subdomain exposes or allows overwriting of this cookie.",
+      "remediation": "Omit the Domain attribute (host-only cookie) or use the __Host- prefix so the cookie is only sent to the issuing host.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+      ]
+    },
+    "CORS-WILDCARD-CREDENTIALS": {
+      "title": "CORS wildcard origin combined with credentials",
+      "check": "cors_cache",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-942",
+      "cwe_name": "Permissive Cross-domain Policy with Untrusted Domains",
+      "wstg": "WSTG-CLNT-07",
+      "owasp": [
+        "A01:2025",
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "description": "The response sends 'Access-Control-Allow-Origin: *' together with 'Access-Control-Allow-Credentials: true'. Browsers refuse this combination, which typically indicates a CORS layer that will be 'fixed' by reflecting arbitrary origins.",
+      "remediation": "Maintain a strict allowlist of trusted origins and only return Access-Control-Allow-Credentials: true for those exact origins.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing"
+      ]
+    },
+    "CORS-NULL-ORIGIN": {
+      "title": "CORS trusts the null origin",
+      "check": "cors_cache",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-942",
+      "cwe_name": "Permissive Cross-domain Policy with Untrusted Domains",
+      "wstg": "WSTG-CLNT-07",
+      "owasp": [
+        "A01:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "description": "The response returns 'Access-Control-Allow-Origin: null'. Sandboxed iframes and data: URLs from any attacker page carry the null origin and can read the response.",
+      "remediation": "Never allowlist the null origin; return only explicit trusted origins.",
+      "references": [
+        "https://portswigger.net/web-security/cors"
+      ]
+    },
+    "CORS-WILDCARD": {
+      "title": "CORS allows any origin",
+      "check": "cors_cache",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-942",
+      "cwe_name": "Permissive Cross-domain Policy with Untrusted Domains",
+      "wstg": "WSTG-CLNT-07",
+      "owasp": [
+        "A01:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+      "description": "The response is readable cross-origin by any website ('Access-Control-Allow-Origin: *'). This is safe for genuinely public content but must not be applied to responses containing user-specific or internal data.",
+      "remediation": "Confirm the resource is public. Otherwise replace the wildcard with an explicit origin allowlist.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing"
+      ]
+    },
+    "CACHE-SENSITIVE-NO-STORE": {
+      "title": "Sensitive response cacheable (missing Cache-Control: no-store)",
+      "check": "cors_cache",
+      "severity": "low",
+      "confidence": "firm",
+      "cwe": "CWE-525",
+      "cwe_name": "Use of Web Browser Cache Containing Sensitive Information",
+      "wstg": "WSTG-ATHN-06",
+      "owasp": [
+        "A07:2025",
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "A response that sets session cookies or contains a login form does not prevent caching. Shared proxies or browser history on shared machines may retain sensitive content.",
+      "remediation": "Send 'Cache-Control: no-store' (and 'Pragma: no-cache' for HTTP/1.0 caches) on authenticated and credential-handling responses.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses"
+      ]
+    },
+    "DISC-SERVER-VERSION": {
+      "title": "Server version disclosed in banner",
+      "check": "disclosure",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-200",
+      "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "wstg": "WSTG-INFO-02",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "The Server header reveals the product and exact version, letting attackers quickly match the host against known vulnerabilities.",
+      "remediation": "Suppress version details (e.g. nginx 'server_tokens off;', Apache 'ServerTokens Prod' / 'ServerSignature Off').",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server"
+      ]
+    },
+    "DISC-VERSION-HEADER": {
+      "title": "Technology version disclosed in response header",
+      "check": "disclosure",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-200",
+      "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "wstg": "WSTG-INFO-08",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "Headers such as X-Powered-By, X-AspNet-Version, X-AspNetMvc-Version or X-Generator reveal the application framework and version.",
+      "remediation": "Remove framework identification headers (e.g. Express 'app.disable(\"x-powered-by\")', PHP 'expose_php = Off', ASP.NET 'enableVersionHeader=\"false\"').",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework"
+      ]
+    },
+    "DISC-STACK-TRACE": {
+      "title": "Stack trace or exception dump disclosed",
+      "check": "disclosure",
+      "severity": "medium",
+      "confidence": "firm",
+      "cwe": "CWE-209",
+      "cwe_name": "Generation of Error Message Containing Sensitive Information",
+      "wstg": "WSTG-ERRH-02",
+      "owasp": [
+        "A10:2025",
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "The response body contains a raw stack trace or framework exception dump, revealing internal file paths, code structure, library versions and sometimes data values.",
+      "remediation": "Handle exceptions centrally, return generic error pages to clients and log the full details server-side only.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html"
+      ]
+    },
+    "DISC-DEBUG-MODE": {
+      "title": "Debug mode or developer tooling exposed",
+      "check": "disclosure",
+      "severity": "medium",
+      "confidence": "firm",
+      "cwe": "CWE-489",
+      "cwe_name": "Active Debug Code",
+      "wstg": "WSTG-ERRH-01",
+      "owasp": [
+        "A02:2025",
+        "A10:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "The response shows signs of a framework running in debug/development mode (Django DEBUG page, Werkzeug debugger, Laravel Ignition/Whoops, Symfony profiler, Rails debug exception page or X-Debug-Token headers).",
+      "remediation": "Disable debug mode in production deployments and remove developer toolbars and profilers.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling"
+      ]
+    },
+    "DISC-HTML-COMMENTS": {
+      "title": "Sensitive developer comments in HTML",
+      "check": "disclosure",
+      "severity": "info",
+      "confidence": "tentative",
+      "cwe": "CWE-615",
+      "cwe_name": "Inclusion of Sensitive Information in Source Code Comments",
+      "wstg": "WSTG-INFO-05",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+      "description": "HTML comments contain developer notes mentioning credentials, internal hosts, debugging or unfinished security work.",
+      "remediation": "Strip comments from production HTML in the build pipeline and never place secrets or internal notes in client-delivered markup.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+      ]
+    },
+    "DISC-PRIVATE-IP": {
+      "title": "Private IP address disclosed",
+      "check": "disclosure",
+      "severity": "low",
+      "confidence": "firm",
+      "cwe": "CWE-200",
+      "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "wstg": "WSTG-INFO-05",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+      "description": "An RFC 1918 private IP address appears in the response headers or body, revealing internal network addressing.",
+      "remediation": "Remove internal addresses from responses; review reverse proxy headers and templated configuration values.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+      ]
+    },
+    "DISC-EMAIL": {
+      "title": "Email addresses disclosed",
+      "check": "disclosure",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-200",
+      "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "wstg": "WSTG-INFO-05",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+      "description": "Email addresses appear in the page content. They can be harvested for phishing and social engineering.",
+      "remediation": "Confirm each published address is intended to be public; prefer role-based aliases or contact forms.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+      ]
+    },
+    "FORM-PASSWORD-OVER-HTTP": {
+      "title": "Cleartext submission of password",
+      "check": "client_forms",
+      "severity": "high",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-ATHN-01",
+      "owasp": [
+        "A04:2025",
+        "A07:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+      "description": "A form containing a password field is served over HTTP or submits to an http:// action, exposing credentials to network attackers.",
+      "remediation": "Serve login pages exclusively over HTTPS and ensure form actions use https:// (or relative URLs on an HTTPS page).",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/01-Testing_for_Credentials_Transported_over_an_Encrypted_Channel"
+      ]
+    },
+    "FORM-INSECURE-ACTION": {
+      "title": "Form submits to insecure HTTP endpoint",
+      "check": "client_forms",
+      "severity": "medium",
+      "confidence": "certain",
+      "cwe": "CWE-319",
+      "cwe_name": "Cleartext Transmission of Sensitive Information",
+      "wstg": "WSTG-CRYP-03",
+      "owasp": [
+        "A06:2025",
+        "A04:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N",
+      "description": "An HTML form on an HTTPS page submits its data to an http:// URL, downgrading the user's input to cleartext.",
+      "remediation": "Change form actions to https:// or relative URLs.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/03-Testing_for_Sensitive_Information_Sent_via_Unencrypted_Channels"
+      ]
+    },
+    "FORM-NO-CSRF-TOKEN": {
+      "title": "State-changing form without anti-CSRF token",
+      "check": "client_forms",
+      "severity": "low",
+      "confidence": "tentative",
+      "cwe": "CWE-352",
+      "cwe_name": "Cross-Site Request Forgery (CSRF)",
+      "wstg": "WSTG-SESS-05",
+      "owasp": [
+        "A06:2025",
+        "A01:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+      "description": "A POST form does not contain a hidden field matching common anti-CSRF token names. Unless protected by SameSite cookies or custom headers, it may be vulnerable to cross-site request forgery. Requires manual confirmation.",
+      "remediation": "Add a per-session or per-request synchronizer token to all state-changing forms and validate it server-side; also set SameSite on session cookies.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/05-Testing_for_Cross_Site_Request_Forgery",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+      ]
+    },
+    "FORM-PASSWORD-AUTOCOMPLETE": {
+      "title": "Password field with autocomplete enabled",
+      "check": "client_forms",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-522",
+      "cwe_name": "Insufficiently Protected Credentials",
+      "wstg": "WSTG-ATHN-05",
+      "owasp": [
+        "A07:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N",
+      "description": "A password input does not set an autocomplete hint. Browsers may store the value; on shared workstations this can expose credentials. Modern guidance permits password managers, so treat as informational.",
+      "remediation": "Use autocomplete=\"current-password\" / \"new-password\" to cooperate with password managers, or autocomplete=\"off\" for high-risk shared-terminal contexts.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/05-Testing_for_Vulnerable_Remember_Password"
+      ]
+    },
+    "SRI-MISSING-SCRIPT": {
+      "title": "External script without Subresource Integrity",
+      "check": "client_forms",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-353",
+      "cwe_name": "Missing Support for Integrity Check",
+      "wstg": "WSTG-CLNT-13",
+      "owasp": [
+        "A08:2025",
+        "A03:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+      "description": "A script is loaded from a third-party origin without an integrity attribute. If the CDN or host is compromised, malicious code runs with full access to this origin.",
+      "remediation": "Add integrity=\"sha384-...\" and crossorigin=\"anonymous\" to third-party scripts, or self-host them.",
+      "references": [
+        "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html"
+      ]
+    },
+    "SRI-MISSING-STYLESHEET": {
+      "title": "External stylesheet without Subresource Integrity",
+      "check": "client_forms",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-353",
+      "cwe_name": "Missing Support for Integrity Check",
+      "wstg": "WSTG-CLNT-13",
+      "owasp": [
+        "A08:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+      "description": "A stylesheet is loaded from a third-party origin without an integrity attribute. A compromised host could inject CSS used for UI redressing or data exfiltration.",
+      "remediation": "Add integrity and crossorigin attributes to third-party stylesheets or self-host them.",
+      "references": [
+        "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+      ]
+    },
+    "JS-VULNERABLE-LIBRARY": {
+      "title": "Vulnerable JavaScript library version",
+      "check": "client_forms",
+      "severity": "medium",
+      "confidence": "tentative",
+      "cwe": "CWE-1395",
+      "cwe_name": "Dependency on Vulnerable Third-Party Component",
+      "wstg": "WSTG-INFO-08",
+      "owasp": [
+        "A03:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+      "description": "A client-side library version inferred from the script URL is affected by publicly known vulnerabilities. Version is fingerprinted passively from the filename/path and should be confirmed.",
+      "remediation": "Upgrade the library to a supported, patched release and track client-side dependencies with an SCA tool (npm audit, Retire.js, Dependabot).",
+      "references": [
+        "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+        "https://retirejs.github.io/retire.js/"
+      ]
+    },
+    "META-SECURITY-TXT-MISSING": {
+      "title": "security.txt not published",
+      "check": "metadata",
+      "severity": "info",
+      "confidence": "certain",
+      "cwe": "CWE-1059",
+      "cwe_name": "Insufficient Technical Documentation",
+      "wstg": "WSTG-INFO-03",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+      "description": "No RFC 9116 security.txt file was found at /.well-known/security.txt, so researchers have no documented channel to report vulnerabilities.",
+      "remediation": "Publish /.well-known/security.txt with at least Contact and Expires fields, ideally signed and including a Policy link.",
+      "references": [
+        "https://www.rfc-editor.org/rfc/rfc9116",
+        "https://securitytxt.org/"
+      ]
+    },
+    "META-SECURITY-TXT-INVALID": {
+      "title": "security.txt incomplete or expired",
+      "check": "metadata",
+      "severity": "low",
+      "confidence": "certain",
+      "cwe": "CWE-1059",
+      "cwe_name": "Insufficient Technical Documentation",
+      "wstg": "WSTG-INFO-03",
+      "owasp": [
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+      "description": "The security.txt file is missing the required Contact or Expires field, or its Expires date has passed (RFC 9116 section 2.5).",
+      "remediation": "Add the required Contact and Expires fields and keep the expiry date current (less than one year ahead).",
+      "references": [
+        "https://www.rfc-editor.org/rfc/rfc9116"
+      ]
+    },
+    "META-ROBOTS-SENSITIVE": {
+      "title": "robots.txt reveals sensitive paths",
+      "check": "metadata",
+      "severity": "info",
+      "confidence": "tentative",
+      "cwe": "CWE-200",
+      "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+      "wstg": "WSTG-INFO-03",
+      "owasp": [
+        "A01:2025",
+        "A02:2025"
+      ],
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+      "description": "robots.txt Disallow entries advertise administrative, backup, configuration or internal paths. robots.txt is not an access control and acts as a roadmap for attackers. (WAPTrix does not request these paths.)",
+      "remediation": "Protect sensitive paths with authentication and network controls; avoid listing them in robots.txt.",
+      "references": [
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage"
+      ]
+    }
+  },
+  "modules": {
+    "headers": {
+      "name": "Security headers",
+      "method": "Reads the security headers (and any CSP meta tag) on the final response to GET /. Parses CSP directives and the HSTS max-age."
+    },
+    "transport_tls": {
+      "name": "Transport & TLS",
+      "method": "Compares GET / over HTTP and HTTPS, including redirect chains. Inspects three TLS handshakes: one to read the certificate, one validated against the certifi CA bundle, and one ClientHello capped at TLS 1.1. Scans the HTML for http:// sub-resources."
+    },
+    "cookies": {
+      "name": "Cookies",
+      "method": "Parses every Set-Cookie header on all responses and redirect hops and flags missing attributes. Cookie values are redacted in evidence."
+    },
+    "cors_cache": {
+      "name": "CORS & caching",
+      "method": "Reviews CORS headers returned to a normal GET (no Origin header is sent), and Cache-Control on responses that set session cookies or contain a password field."
+    },
+    "disclosure": {
+      "name": "Information disclosure",
+      "method": "Matches response headers and bodies against version-banner, stack-trace, debug-page, private-IP and email patterns. Reviews HTML comments for sensitive keywords."
+    },
+    "client_forms": {
+      "name": "Forms & client-side",
+      "method": "Parses HTML forms (action scheme, method, hidden CSRF fields, password inputs) and script/link tags (integrity attribute, third-party origin, versioned library URLs matched against known-vulnerable ranges)."
+    },
+    "metadata": {
+      "name": "Security metadata",
+      "method": "Fetches /robots.txt and /.well-known/security.txt. Validates the RFC 9116 fields and lists sensitive Disallow entries without requesting them."
+    }
+  }
+}

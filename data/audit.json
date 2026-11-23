@@ -1,0 +1,5362 @@
+{
+  "id": "demo-acme-corp",
+  "authorization_ref": "DEMO-ACME-2026-001",
+  "status": "completed",
+  "created_at": "2026-11-22T12:30:53.843616Z",
+  "completed_at": "2026-11-22T12:30:54.259809Z",
+  "engine_version": "1.0.0",
+  "request": {
+    "subdomains": [
+      "www.acme-corp.example",
+      "app.acme-corp.example",
+      "api.acme-corp.example",
+      "admin.acme-corp.example",
+      "legacy.acme-corp.example",
+      "https://www.acme-corp.example/",
+      "*.acme-corp.example",
+      "vendor-portal.example.net"
+    ],
+    "authorization_ref": "DEMO-ACME-2026-001",
+    "scope_domains": [
+      "acme-corp.example"
+    ],
+    "concurrency": 5,
+    "requests_per_second": 10.0,
+    "timeout": 10.0,
+    "allow_private": true,
+    "include_metadata": true,
+    "tool_timeout": 600.0,
+    "tools": [],
+    "active": false,
+    "active_tools": [],
+    "retest_rounds": 1,
+    "max_endpoints": 5
+  },
+  "subdomains": [
+    {
+      "subdomain": "www.acme-corp.example",
+      "reachable": true,
+      "scheme": "https",
+      "status_code": 200,
+      "final_url": "https://www.acme-corp.example/",
+      "ip_addresses": [
+        "198.51.100.10"
+      ],
+      "https_redirect": true,
+      "https": {
+        "url": "https://www.acme-corp.example/",
+        "final_url": "https://www.acme-corp.example/",
+        "status_code": 200,
+        "headers": {
+          "server": "cloudflare",
+          "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; frame-ancestors 'none'; object-src 'none'",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "camera=(), microphone=(), geolocation=()",
+          "set-cookie": "__Host-acme_pref=lang-en; Path=/; Secure; HttpOnly; SameSite=Lax",
+          "cache-control": "public, max-age=300",
+          "content-length": "818",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [],
+        "elapsed_ms": 0,
+        "body_bytes": 818,
+        "error": null
+      },
+      "http": {
+        "url": "http://www.acme-corp.example/",
+        "final_url": "https://www.acme-corp.example/",
+        "status_code": 200,
+        "headers": {
+          "server": "cloudflare",
+          "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; frame-ancestors 'none'; object-src 'none'",
+          "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "strict-origin-when-cross-origin",
+          "permissions-policy": "camera=(), microphone=(), geolocation=()",
+          "set-cookie": "__Host-acme_pref=lang-en; Path=/; Secure; HttpOnly; SameSite=Lax",
+          "cache-control": "public, max-age=300",
+          "content-length": "818",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [
+          {
+            "url": "http://www.acme-corp.example/",
+            "status_code": 301,
+            "location": "https://www.acme-corp.example/"
+          }
+        ],
+        "elapsed_ms": 201,
+        "body_bytes": 818,
+        "error": null
+      },
+      "tls": {
+        "host": "www.acme-corp.example",
+        "port": 443,
+        "protocol": "TLSv1.3",
+        "cipher": "TLS_AES_256_GCM_SHA384",
+        "cipher_bits": 256,
+        "cert_subject": "commonName=*.acme-corp.example",
+        "cert_issuer": "countryName=US, organizationName=Let's Encrypt, commonName=R11",
+        "cert_serial": "4a1f9be20c3d7e",
+        "cert_not_before": "2026-10-13T12:30:53.843438Z",
+        "cert_not_after": "2027-01-11T12:30:53.843438Z",
+        "days_to_expiry": 50,
+        "san": [
+          "*.acme-corp.example",
+          "acme-corp.example"
+        ],
+        "self_signed": false,
+        "hostname_match": true,
+        "trusted": true,
+        "verify_error": null,
+        "legacy_protocols_accepted": [],
+        "legacy_probe": "completed",
+        "error": null
+      },
+      "findings": [
+        {
+          "id": "HDR-CSP-WEAK-95363dd4dc54",
+          "rule_id": "HDR-CSP-WEAK",
+          "title": "Content-Security-Policy allows unsafe sources",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "www.acme-corp.example",
+          "url": "https://www.acme-corp.example/",
+          "description": "The Content-Security-Policy contains directives such as 'unsafe-inline', 'unsafe-eval', wildcard sources or plain http: sources in script-related directives, significantly reducing its effectiveness against XSS.\n\nWeaknesses: script-src allows 'unsafe-inline'",
+          "evidence": "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' https://fonts.googleapis.com; frame-ancestors 'none'; object-src 'none'",
+          "remediation": "Remove 'unsafe-inline' and 'unsafe-eval' from script-src/default-src, replace wildcards with explicit origins and use nonce- or hash-based allowlisting with 'strict-dynamic'.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-12",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+          "cvss_score": 4.2,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html",
+            "https://csp-evaluator.withgoogle.com/"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "SRI-MISSING-SCRIPT-2d54f985ba1a",
+          "rule_id": "SRI-MISSING-SCRIPT",
+          "title": "External script without Subresource Integrity",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "www.acme-corp.example",
+          "url": "https://www.acme-corp.example/",
+          "description": "A script is loaded from a third-party origin without an integrity attribute. If the CDN or host is compromised, malicious code runs with full access to this origin.\n\n1 third-party script(s) loaded without an integrity attribute.",
+          "evidence": "https://www.googletagmanager.com/gtag/js?id=G-ACME123",
+          "remediation": "Add integrity=\"sha384-...\" and crossorigin=\"anonymous\" to third-party scripts, or self-host them.",
+          "cwe": "CWE-353",
+          "cwe_name": "Missing Support for Integrity Check",
+          "wstg": "WSTG-CLNT-13",
+          "owasp": [
+            "A08:2025",
+            "A03:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 4.7,
+          "references": [
+            "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-EMAIL-1da9f66b8a3d",
+          "rule_id": "DISC-EMAIL",
+          "title": "Email addresses disclosed",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "www.acme-corp.example",
+          "url": "https://www.acme-corp.example/",
+          "description": "Email addresses appear in the page content. They can be harvested for phishing and social engineering.",
+          "evidence": "press@acme-corp.example",
+          "remediation": "Confirm each published address is intended to be public; prefer role-based aliases or contact forms.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-05",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "SRI-MISSING-STYLESHEET-c796ebb36f70",
+          "rule_id": "SRI-MISSING-STYLESHEET",
+          "title": "External stylesheet without Subresource Integrity",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "www.acme-corp.example",
+          "url": "https://www.acme-corp.example/",
+          "description": "A stylesheet is loaded from a third-party origin without an integrity attribute. A compromised host could inject CSS used for UI redressing or data exfiltration.",
+          "evidence": "https://fonts.googleapis.com/css2?family=Inter:wght@400;700",
+          "remediation": "Add integrity and crossorigin attributes to third-party stylesheets or self-host them.",
+          "cwe": "CWE-353",
+          "cwe_name": "Missing Support for Integrity Check",
+          "wstg": "WSTG-CLNT-13",
+          "owasp": [
+            "A08:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "retest_queue": [],
+      "technologies": [],
+      "tool_runs": [],
+      "app_map": {
+        "endpoints": [
+          {
+            "url": "https://www.acme-corp.example/",
+            "method": "GET",
+            "params": [],
+            "source": "page"
+          },
+          {
+            "url": "https://www.acme-corp.example/products",
+            "method": "GET",
+            "params": [],
+            "source": "link"
+          },
+          {
+            "url": "https://www.acme-corp.example/careers",
+            "method": "GET",
+            "params": [],
+            "source": "link"
+          },
+          {
+            "url": "https://www.acme-corp.example/newsletter",
+            "method": "POST",
+            "params": [
+              "csrf_token",
+              "email"
+            ],
+            "source": "form"
+          },
+          {
+            "url": "https://www.acme-corp.example/assets/app.8d2e1.js",
+            "method": "GET",
+            "params": [],
+            "source": "script"
+          }
+        ],
+        "truncated": false
+      },
+      "retest_rounds_run": 0,
+      "score": 94,
+      "grade": "A",
+      "categories": [
+        {
+          "id": "A01:2025",
+          "name": "Broken Access Control",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A02:2025",
+          "name": "Security Misconfiguration",
+          "status": "warning",
+          "coverage": "high",
+          "finding_count": 2,
+          "max_severity": "low",
+          "rule_ids": [
+            "DISC-EMAIL",
+            "HDR-CSP-WEAK"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A03:2025",
+          "name": "Software Supply Chain Failures",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "SRI-MISSING-SCRIPT"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A04:2025",
+          "name": "Cryptographic Failures",
+          "status": "pass",
+          "coverage": "high",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A05:2025",
+          "name": "Injection",
+          "status": "warning",
+          "coverage": "indicators",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "HDR-CSP-WEAK"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A06:2025",
+          "name": "Insecure Design",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A07:2025",
+          "name": "Authentication Failures",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A08:2025",
+          "name": "Software or Data Integrity Failures",
+          "status": "warning",
+          "coverage": "high",
+          "finding_count": 2,
+          "max_severity": "low",
+          "rule_ids": [
+            "SRI-MISSING-SCRIPT",
+            "SRI-MISSING-STYLESHEET"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A09:2025",
+          "name": "Security Logging and Alerting Failures",
+          "status": "manual_review",
+          "coverage": "manual",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A10:2025",
+          "name": "Mishandling of Exceptional Conditions",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        }
+      ],
+      "severity_counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 2,
+        "info": 2
+      },
+      "error": null,
+      "scanned_at": "2026-11-22T12:30:53.844577Z",
+      "duration_ms": 409
+    },
+    {
+      "subdomain": "app.acme-corp.example",
+      "reachable": true,
+      "scheme": "https",
+      "status_code": 200,
+      "final_url": "https://app.acme-corp.example/",
+      "ip_addresses": [
+        "198.51.100.21"
+      ],
+      "https_redirect": true,
+      "https": {
+        "url": "https://app.acme-corp.example/",
+        "final_url": "https://app.acme-corp.example/",
+        "status_code": 200,
+        "headers": {
+          "server": "nginx/1.18.0 (Ubuntu)",
+          "x-powered-by": "PHP/7.4.33",
+          "strict-transport-security": "max-age=86400",
+          "set-cookie": "PORTALSESSID=9f8e7d6c5b4a39281706; path=/; domain=.acme-corp.example\ntracking_id=a1b2c3d4; Path=/; Secure; SameSite=None",
+          "cache-control": "private, max-age=600",
+          "content-length": "965",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [],
+        "elapsed_ms": 0,
+        "body_bytes": 965,
+        "error": null
+      },
+      "http": {
+        "url": "http://app.acme-corp.example/",
+        "final_url": "https://app.acme-corp.example/",
+        "status_code": 200,
+        "headers": {
+          "server": "nginx/1.18.0 (Ubuntu)",
+          "x-powered-by": "PHP/7.4.33",
+          "strict-transport-security": "max-age=86400",
+          "set-cookie": "PORTALSESSID=9f8e7d6c5b4a39281706; path=/; domain=.acme-corp.example\ntracking_id=a1b2c3d4; Path=/; Secure; SameSite=None",
+          "cache-control": "private, max-age=600",
+          "content-length": "965",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [
+          {
+            "url": "http://app.acme-corp.example/",
+            "status_code": 301,
+            "location": "https://app.acme-corp.example/"
+          }
+        ],
+        "elapsed_ms": 201,
+        "body_bytes": 965,
+        "error": null
+      },
+      "tls": {
+        "host": "app.acme-corp.example",
+        "port": 443,
+        "protocol": "TLSv1.2",
+        "cipher": "ECDHE-RSA-AES128-GCM-SHA256",
+        "cipher_bits": 128,
+        "cert_subject": "commonName=*.acme-corp.example",
+        "cert_issuer": "countryName=US, organizationName=Let's Encrypt, commonName=R11",
+        "cert_serial": "4a1f9be20c3d7e",
+        "cert_not_before": "2026-10-13T12:30:53.843438Z",
+        "cert_not_after": "2026-12-04T12:30:53.843438Z",
+        "days_to_expiry": 12,
+        "san": [
+          "*.acme-corp.example",
+          "acme-corp.example"
+        ],
+        "self_signed": false,
+        "hostname_match": true,
+        "trusted": true,
+        "verify_error": null,
+        "legacy_protocols_accepted": [],
+        "legacy_probe": "completed",
+        "error": null
+      },
+      "findings": [
+        {
+          "id": "CKE-NO-SECURE-5feef7ba4dd3",
+          "rule_id": "CKE-NO-SECURE",
+          "title": "Cookie without Secure flag",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A cookie is issued without the Secure attribute, so the browser will also transmit it over unencrypted HTTP connections where it can be intercepted.",
+          "evidence": "Set-Cookie: PORTALSESSID=9f8e\u2026[redacted]; path=/; domain=.acme-corp.example",
+          "remediation": "Set the Secure attribute on all cookies, and use the __Host- prefix for session cookies.",
+          "cwe": "CWE-614",
+          "cwe_name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A04:2025",
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 4.8,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-SESSION-NO-HTTPONLY-f72402c10384",
+          "rule_id": "CKE-SESSION-NO-HTTPONLY",
+          "title": "Session cookie without HttpOnly flag",
+          "severity": "medium",
+          "confidence": "firm",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A cookie whose name indicates a session or authentication token lacks the HttpOnly attribute, so any cross-site scripting flaw can steal it via document.cookie.",
+          "evidence": "Set-Cookie: PORTALSESSID=9f8e\u2026[redacted]; path=/; domain=.acme-corp.example",
+          "remediation": "Set HttpOnly on all session and authentication cookies.",
+          "cwe": "CWE-1004",
+          "cwe_name": "Sensitive Cookie Without 'HttpOnly' Flag",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 5.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-CSP-MISSING-a02c627cd7a3",
+          "rule_id": "HDR-CSP-MISSING",
+          "title": "Content-Security-Policy header missing",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The HTML response does not define a Content-Security-Policy. Without CSP the browser has no policy to restrict script sources, which removes an important mitigation against cross-site scripting and data injection.",
+          "evidence": "No Content-Security-Policy header or meta tag",
+          "remediation": "Deploy a restrictive Content-Security-Policy (start with default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self') and tighten it with nonces or hashes. Roll out using Content-Security-Policy-Report-Only first.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-12",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 4.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/12-Test_for_Content_Security_Policy",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CACHE-SENSITIVE-NO-STORE-c7508ee5060b",
+          "rule_id": "CACHE-SENSITIVE-NO-STORE",
+          "title": "Sensitive response cacheable (missing Cache-Control: no-store)",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A response that sets session cookies or contains a login form does not prevent caching. Shared proxies or browser history on shared machines may retain sensitive content.\n\nResponse considered sensitive because it sets session cookie(s): PORTALSESSID and contains a password input.",
+          "evidence": "Cache-Control: private, max-age=600; Pragma: (absent)",
+          "remediation": "Send 'Cache-Control: no-store' (and 'Pragma: no-cache' for HTTP/1.0 caches) on authenticated and credential-handling responses.",
+          "cwe": "CWE-525",
+          "cwe_name": "Use of Web Browser Cache Containing Sensitive Information",
+          "wstg": "WSTG-ATHN-06",
+          "owasp": [
+            "A07:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 4.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cors_cache",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-BROAD-DOMAIN-5408ae9ebd41",
+          "rule_id": "CKE-BROAD-DOMAIN",
+          "title": "Cookie scoped to parent domain",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A cookie's Domain attribute is set to a parent domain, so it will be sent to every sibling subdomain. A compromise of any less-secure subdomain exposes or allows overwriting of this cookie.\n\nCookie 'PORTALSESSID' is sent to every host under 'acme-corp.example', not only 'app.acme-corp.example'.",
+          "evidence": "Set-Cookie: PORTALSESSID=9f8e\u2026[redacted]; path=/; domain=.acme-corp.example",
+          "remediation": "Omit the Domain attribute (host-only cookie) or use the __Host- prefix so the cookie is only sent to the issuing host.",
+          "cwe": "CWE-668",
+          "cwe_name": "Exposure of Resource to Wrong Sphere",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025",
+            "A01:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+          "cvss_score": 4.2,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-NO-SAMESITE-8c3506924a04",
+          "rule_id": "CKE-NO-SAMESITE",
+          "title": "Cookie without SameSite attribute",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A cookie is issued without an explicit SameSite attribute. Browser defaults vary, and older clients will attach it to cross-site requests, increasing CSRF exposure.",
+          "evidence": "Set-Cookie: PORTALSESSID=9f8e\u2026[redacted]; path=/; domain=.acme-corp.example",
+          "remediation": "Set SameSite=Lax (or Strict for highly sensitive cookies) explicitly on every cookie.",
+          "cwe": "CWE-1275",
+          "cwe_name": "Sensitive Cookie with Improper SameSite Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025",
+            "A06:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://owasp.org/www-community/SameSite"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-SERVER-VERSION-d746d518fd54",
+          "rule_id": "DISC-SERVER-VERSION",
+          "title": "Server version disclosed in banner",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The Server header reveals the product and exact version, letting attackers quickly match the host against known vulnerabilities.",
+          "evidence": "Server: nginx/1.18.0 (Ubuntu)",
+          "remediation": "Suppress version details (e.g. nginx 'server_tokens off;', Apache 'ServerTokens Prod' / 'ServerSignature Off').",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-02",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-VERSION-HEADER-92ef14f99277",
+          "rule_id": "DISC-VERSION-HEADER",
+          "title": "Technology version disclosed in response header",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "Headers such as X-Powered-By, X-AspNet-Version, X-AspNetMvc-Version or X-Generator reveal the application framework and version.",
+          "evidence": "x-powered-by: PHP/7.4.33",
+          "remediation": "Remove framework identification headers (e.g. Express 'app.disable(\"x-powered-by\")', PHP 'expose_php = Off', ASP.NET 'enableVersionHeader=\"false\"').",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-08",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-HSTS-WEAK-60f99fa8b4ed",
+          "rule_id": "HDR-HSTS-WEAK",
+          "title": "Strict-Transport-Security max-age too short",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The Strict-Transport-Security policy uses a max-age below 180 days (15552000 seconds) or disables HSTS with max-age=0, giving only brief or no protection against protocol downgrade.\n\nParsed max-age: 86400 seconds.",
+          "evidence": "Strict-Transport-Security: max-age=86400",
+          "remediation": "Increase max-age to at least 31536000 (one year) and include includeSubDomains where possible.",
+          "cwe": "CWE-319",
+          "cwe_name": "Cleartext Transmission of Sensitive Information",
+          "wstg": "WSTG-CONF-07",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-XCTO-MISSING-79b6463fa104",
+          "rule_id": "HDR-XCTO-MISSING",
+          "title": "X-Content-Type-Options header missing",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The response does not include 'X-Content-Type-Options: nosniff'. Browsers may MIME-sniff responses and interpret user-controlled content as script or HTML.",
+          "evidence": "No X-Content-Type-Options header",
+          "remediation": "Send 'X-Content-Type-Options: nosniff' on all responses and ensure accurate Content-Type headers.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-content-type-options"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-XFO-MISSING-5a5547f8a9a0",
+          "rule_id": "HDR-XFO-MISSING",
+          "title": "Clickjacking protection missing (X-Frame-Options / frame-ancestors)",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The HTML response sets neither X-Frame-Options nor a CSP frame-ancestors directive, so the page may be framed by any origin and abused for clickjacking.",
+          "evidence": "No X-Frame-Options or CSP frame-ancestors",
+          "remediation": "Send 'Content-Security-Policy: frame-ancestors 'self'' (preferred) and/or 'X-Frame-Options: DENY' or 'SAMEORIGIN'.",
+          "cwe": "CWE-1021",
+          "cwe_name": "Improper Restriction of Rendered UI Layers or Frames",
+          "wstg": "WSTG-CLNT-09",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 4.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/09-Testing_for_Clickjacking",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "SRI-MISSING-SCRIPT-f82a76049e0c",
+          "rule_id": "SRI-MISSING-SCRIPT",
+          "title": "External script without Subresource Integrity",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A script is loaded from a third-party origin without an integrity attribute. If the CDN or host is compromised, malicious code runs with full access to this origin.\n\n3 third-party script(s) loaded without an integrity attribute.",
+          "evidence": "https://code.jquery.com/jquery-1.12.4.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js\nhttps://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js",
+          "remediation": "Add integrity=\"sha384-...\" and crossorigin=\"anonymous\" to third-party scripts, or self-host them.",
+          "cwe": "CWE-353",
+          "cwe_name": "Missing Support for Integrity Check",
+          "wstg": "WSTG-CLNT-13",
+          "owasp": [
+            "A08:2025",
+            "A03:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 4.7,
+          "references": [
+            "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-CERT-EXPIRING-d0f292976bb4",
+          "rule_id": "TLS-CERT-EXPIRING",
+          "title": "TLS certificate expires within 30 days",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The server certificate will expire soon. Unless renewed, users will receive certificate errors and service availability will be impacted.",
+          "evidence": "Certificate expires 2026-12-04T12:30:53.843438+00:00 (12 days)",
+          "remediation": "Renew the certificate and ensure automated renewal with alerting at least 30 days before expiry.",
+          "cwe": "CWE-298",
+          "cwe_name": "Improper Validation of Certificate Expiration",
+          "wstg": "WSTG-CRYP-01",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:L",
+          "cvss_score": 3.1,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-MIXED-CONTENT-PASSIVE-d3037e04d2c8",
+          "rule_id": "TLS-MIXED-CONTENT-PASSIVE",
+          "title": "Passive mixed content (images/media over HTTP)",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "The HTTPS page references images, audio or video over plain http://, leaking browsing activity and allowing content spoofing.\n\n1 insecure passive resource reference(s) found.",
+          "evidence": "<img src=\"http://partners.acme-corp.example/badges/iso27001.png\">",
+          "remediation": "Serve all media over https:// and enable 'upgrade-insecure-requests'.",
+          "cwe": "CWE-319",
+          "cwe_name": "Cleartext Transmission of Sensitive Information",
+          "wstg": "WSTG-CRYP-03",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "FORM-PASSWORD-AUTOCOMPLETE-ed83b295a5bf",
+          "rule_id": "FORM-PASSWORD-AUTOCOMPLETE",
+          "title": "Password field with autocomplete enabled",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A password input does not set an autocomplete hint. Browsers may store the value; on shared workstations this can expose credentials. Modern guidance permits password managers, so treat as informational.",
+          "evidence": "<input type=\"password\" name=\"password\">",
+          "remediation": "Use autocomplete=\"current-password\" / \"new-password\" to cooperate with password managers, or autocomplete=\"off\" for high-risk shared-terminal contexts.",
+          "cwe": "CWE-522",
+          "cwe_name": "Insufficiently Protected Credentials",
+          "wstg": "WSTG-ATHN-05",
+          "owasp": [
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/05-Testing_for_Vulnerable_Remember_Password"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-PERMISSIONS-MISSING-6e4726cebde0",
+          "rule_id": "HDR-PERMISSIONS-MISSING",
+          "title": "Permissions-Policy header missing",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "No Permissions-Policy is defined, so powerful browser features (camera, microphone, geolocation, payment) are not explicitly restricted for this origin and embedded frames.",
+          "evidence": "No Permissions-Policy header",
+          "remediation": "Send a Permissions-Policy disabling unused features, e.g. 'Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()'.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#permissions-policy-formerly-feature-policy"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-REFERRER-MISSING-d7d136ed0acd",
+          "rule_id": "HDR-REFERRER-MISSING",
+          "title": "Referrer-Policy header missing",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "No Referrer-Policy is defined. Modern browsers default to strict-origin-when-cross-origin, but older clients may leak full URLs (including tokens in query strings) to third parties.",
+          "evidence": "No Referrer-Policy header",
+          "remediation": "Send 'Referrer-Policy: strict-origin-when-cross-origin' or 'no-referrer' for sensitive applications.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#referrer-policy"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "META-SECURITY-TXT-MISSING-d18cf47154d6",
+          "rule_id": "META-SECURITY-TXT-MISSING",
+          "title": "security.txt not published",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/.well-known/security.txt",
+          "description": "No RFC 9116 security.txt file was found at /.well-known/security.txt, so researchers have no documented channel to report vulnerabilities.",
+          "evidence": "GET https://app.acme-corp.example/.well-known/security.txt -> 404 (text/html; charset=utf-8)",
+          "remediation": "Publish /.well-known/security.txt with at least Contact and Expires fields, ideally signed and including a Policy link.",
+          "cwe": "CWE-1059",
+          "cwe_name": "Insufficient Technical Documentation",
+          "wstg": "WSTG-INFO-03",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://www.rfc-editor.org/rfc/rfc9116",
+            "https://securitytxt.org/"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "metadata",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "SRI-MISSING-STYLESHEET-4a1ec3a65d7c",
+          "rule_id": "SRI-MISSING-STYLESHEET",
+          "title": "External stylesheet without Subresource Integrity",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A stylesheet is loaded from a third-party origin without an integrity attribute. A compromised host could inject CSS used for UI redressing or data exfiltration.",
+          "evidence": "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css",
+          "remediation": "Add integrity and crossorigin attributes to third-party stylesheets or self-host them.",
+          "cwe": "CWE-353",
+          "cwe_name": "Missing Support for Integrity Check",
+          "wstg": "WSTG-CLNT-13",
+          "owasp": [
+            "A08:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "retest_queue": [
+        {
+          "id": "JS-VULNERABLE-LIBRARY-32bb7ac349a7",
+          "rule_id": "JS-VULNERABLE-LIBRARY",
+          "title": "Vulnerable JavaScript library version",
+          "severity": "medium",
+          "confidence": "tentative",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A client-side library version inferred from the script URL is affected by publicly known vulnerabilities. Version is fingerprinted passively from the filename/path and should be confirmed.\n\nAdvisory: CVE-2020-11022 / CVE-2020-11023: XSS via htmlPrefilter (fixed in 3.5.0)",
+          "evidence": "jQuery 1.12.4 loaded from https://code.jquery.com/jquery-1.12.4.min.js",
+          "remediation": "Upgrade the library to a supported, patched release and track client-side dependencies with an SCA tool (npm audit, Retire.js, Dependabot).",
+          "cwe": "CWE-1395",
+          "cwe_name": "Dependency on Vulnerable Third-Party Component",
+          "wstg": "WSTG-INFO-08",
+          "owasp": [
+            "A03:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 6.1,
+          "references": [
+            "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+            "https://retirejs.github.io/retire.js/"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "libraries",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "JS-VULNERABLE-LIBRARY-7ba66fc975ad",
+          "rule_id": "JS-VULNERABLE-LIBRARY",
+          "title": "Vulnerable JavaScript library version",
+          "severity": "medium",
+          "confidence": "tentative",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A client-side library version inferred from the script URL is affected by publicly known vulnerabilities. Version is fingerprinted passively from the filename/path and should be confirmed.\n\nAdvisory: CVE-2019-8331 / CVE-2018-14041: XSS in tooltip/data-target (fixed in 3.4.1)",
+          "evidence": "Bootstrap 3.3.7 loaded from https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js",
+          "remediation": "Upgrade the library to a supported, patched release and track client-side dependencies with an SCA tool (npm audit, Retire.js, Dependabot).",
+          "cwe": "CWE-1395",
+          "cwe_name": "Dependency on Vulnerable Third-Party Component",
+          "wstg": "WSTG-INFO-08",
+          "owasp": [
+            "A03:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 6.1,
+          "references": [
+            "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+            "https://retirejs.github.io/retire.js/"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "libraries",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "JS-VULNERABLE-LIBRARY-f8509baa286c",
+          "rule_id": "JS-VULNERABLE-LIBRARY",
+          "title": "Vulnerable JavaScript library version",
+          "severity": "medium",
+          "confidence": "tentative",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A client-side library version inferred from the script URL is affected by publicly known vulnerabilities. Version is fingerprinted passively from the filename/path and should be confirmed.\n\nAdvisory: CVE-2022-31129: ReDoS in RFC 2822 parsing (fixed in 2.29.4)",
+          "evidence": "Moment.js 2.24.0 loaded from https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js",
+          "remediation": "Upgrade the library to a supported, patched release and track client-side dependencies with an SCA tool (npm audit, Retire.js, Dependabot).",
+          "cwe": "CWE-1395",
+          "cwe_name": "Dependency on Vulnerable Third-Party Component",
+          "wstg": "WSTG-INFO-08",
+          "owasp": [
+            "A03:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 6.1,
+          "references": [
+            "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+            "https://retirejs.github.io/retire.js/"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "libraries",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "FORM-NO-CSRF-TOKEN-44dc14be91d2",
+          "rule_id": "FORM-NO-CSRF-TOKEN",
+          "title": "State-changing form without anti-CSRF token",
+          "severity": "low",
+          "confidence": "tentative",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "A POST form does not contain a hidden field matching common anti-CSRF token names. Unless protected by SameSite cookies or custom headers, it may be vulnerable to cross-site request forgery. Requires manual confirmation.\n\n1 POST form(s) without a recognizable anti-CSRF hidden field.",
+          "evidence": "<form method=\"POST\" action=\"/session\"> fields: username, password",
+          "remediation": "Add a per-session or per-request synchronizer token to all state-changing forms and validate it server-side; also set SameSite on session cookies.",
+          "cwe": "CWE-352",
+          "cwe_name": "Cross-Site Request Forgery (CSRF)",
+          "wstg": "WSTG-SESS-05",
+          "owasp": [
+            "A06:2025",
+            "A01:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 4.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/05-Testing_for_Cross_Site_Request_Forgery",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-HTML-COMMENTS-e1c8c3002eb1",
+          "rule_id": "DISC-HTML-COMMENTS",
+          "title": "Sensitive developer comments in HTML",
+          "severity": "info",
+          "confidence": "tentative",
+          "subdomain": "app.acme-corp.example",
+          "url": "https://app.acme-corp.example/",
+          "description": "HTML comments contain developer notes mentioning credentials, internal hosts, debugging or unfinished security work.\n\n1 comment(s) contain sensitive keywords.",
+          "evidence": "<!-- TODO: re-enable CSRF middleware after the SSO migration (ticket PORTAL-412) -->",
+          "remediation": "Strip comments from production HTML in the build pipeline and never place secrets or internal notes in client-delivered markup.",
+          "cwe": "CWE-615",
+          "cwe_name": "Inclusion of Sensitive Information in Source Code Comments",
+          "wstg": "WSTG-INFO-05",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "technologies": [],
+      "tool_runs": [],
+      "app_map": {
+        "endpoints": [
+          {
+            "url": "https://app.acme-corp.example/",
+            "method": "GET",
+            "params": [],
+            "source": "page"
+          },
+          {
+            "url": "https://app.acme-corp.example/forgot",
+            "method": "GET",
+            "params": [],
+            "source": "link"
+          },
+          {
+            "url": "https://app.acme-corp.example/session",
+            "method": "POST",
+            "params": [
+              "password",
+              "username"
+            ],
+            "source": "form"
+          }
+        ],
+        "truncated": false
+      },
+      "retest_rounds_run": 0,
+      "score": 43,
+      "grade": "F",
+      "categories": [
+        {
+          "id": "A01:2025",
+          "name": "Broken Access Control",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "CKE-BROAD-DOMAIN"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A02:2025",
+          "name": "Security Misconfiguration",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 9,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "DISC-SERVER-VERSION",
+            "DISC-VERSION-HEADER",
+            "HDR-CSP-MISSING",
+            "HDR-PERMISSIONS-MISSING",
+            "HDR-REFERRER-MISSING",
+            "HDR-XCTO-MISSING",
+            "HDR-XFO-MISSING",
+            "META-SECURITY-TXT-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A03:2025",
+          "name": "Software Supply Chain Failures",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "SRI-MISSING-SCRIPT"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A04:2025",
+          "name": "Cryptographic Failures",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 4,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CKE-NO-SECURE",
+            "HDR-HSTS-WEAK",
+            "TLS-CERT-EXPIRING",
+            "TLS-MIXED-CONTENT-PASSIVE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A05:2025",
+          "name": "Injection",
+          "status": "fail",
+          "coverage": "indicators",
+          "finding_count": 2,
+          "max_severity": "medium",
+          "rule_ids": [
+            "HDR-CSP-MISSING",
+            "HDR-XCTO-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A06:2025",
+          "name": "Insecure Design",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "CKE-NO-SAMESITE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A07:2025",
+          "name": "Authentication Failures",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 6,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "CKE-BROAD-DOMAIN",
+            "CKE-NO-SAMESITE",
+            "CKE-NO-SECURE",
+            "CKE-SESSION-NO-HTTPONLY",
+            "FORM-PASSWORD-AUTOCOMPLETE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A08:2025",
+          "name": "Software or Data Integrity Failures",
+          "status": "warning",
+          "coverage": "high",
+          "finding_count": 2,
+          "max_severity": "low",
+          "rule_ids": [
+            "SRI-MISSING-SCRIPT",
+            "SRI-MISSING-STYLESHEET"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A09:2025",
+          "name": "Security Logging and Alerting Failures",
+          "status": "manual_review",
+          "coverage": "manual",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A10:2025",
+          "name": "Mishandling of Exceptional Conditions",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        }
+      ],
+      "severity_counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 3,
+        "low": 11,
+        "info": 5
+      },
+      "error": null,
+      "scanned_at": "2026-11-22T12:30:53.844621Z",
+      "duration_ms": 413
+    },
+    {
+      "subdomain": "api.acme-corp.example",
+      "reachable": true,
+      "scheme": "https",
+      "status_code": 500,
+      "final_url": "https://api.acme-corp.example/",
+      "ip_addresses": [
+        "198.51.100.22",
+        "2001:db8::22"
+      ],
+      "https_redirect": false,
+      "https": {
+        "url": "https://api.acme-corp.example/",
+        "final_url": "https://api.acme-corp.example/",
+        "status_code": 500,
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+          "x-powered-by": "Express",
+          "access-control-allow-origin": "*",
+          "access-control-allow-credentials": "true",
+          "strict-transport-security": "max-age=31536000",
+          "set-cookie": "connect.sid=s%3AeyJ1c2VyIjoxfQ.sig; Path=/; HttpOnly",
+          "content-length": "442"
+        },
+        "redirect_chain": [],
+        "elapsed_ms": 0,
+        "body_bytes": 442,
+        "error": null
+      },
+      "http": {
+        "url": "http://api.acme-corp.example/",
+        "final_url": "http://api.acme-corp.example/",
+        "status_code": 200,
+        "headers": {
+          "x-powered-by": "Express",
+          "content-length": "30",
+          "content-type": "application/json"
+        },
+        "redirect_chain": [],
+        "elapsed_ms": 101,
+        "body_bytes": 30,
+        "error": null
+      },
+      "tls": {
+        "host": "api.acme-corp.example",
+        "port": 443,
+        "protocol": "TLSv1.2",
+        "cipher": "ECDHE-RSA-AES256-GCM-SHA384",
+        "cipher_bits": 256,
+        "cert_subject": "commonName=*.acme-corp.example",
+        "cert_issuer": "countryName=US, organizationName=Let's Encrypt, commonName=R11",
+        "cert_serial": "4a1f9be20c3d7e",
+        "cert_not_before": "2026-10-13T12:30:53.843438Z",
+        "cert_not_after": "2027-01-11T12:30:53.843438Z",
+        "days_to_expiry": 50,
+        "san": [
+          "*.acme-corp.example",
+          "acme-corp.example"
+        ],
+        "self_signed": false,
+        "hostname_match": true,
+        "trusted": true,
+        "verify_error": null,
+        "legacy_protocols_accepted": [],
+        "legacy_probe": "completed",
+        "error": null
+      },
+      "findings": [
+        {
+          "id": "CKE-NO-SECURE-0b5f6f0d3bb1",
+          "rule_id": "CKE-NO-SECURE",
+          "title": "Cookie without Secure flag",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "A cookie is issued without the Secure attribute, so the browser will also transmit it over unencrypted HTTP connections where it can be intercepted.",
+          "evidence": "Set-Cookie: connect.sid=s%3A\u2026[redacted]; Path=/; HttpOnly",
+          "remediation": "Set the Secure attribute on all cookies, and use the __Host- prefix for session cookies.",
+          "cwe": "CWE-614",
+          "cwe_name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A04:2025",
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 4.8,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CORS-WILDCARD-CREDENTIALS-f663c58dac45",
+          "rule_id": "CORS-WILDCARD-CREDENTIALS",
+          "title": "CORS wildcard origin combined with credentials",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "The response sends 'Access-Control-Allow-Origin: *' together with 'Access-Control-Allow-Credentials: true'. Browsers refuse this combination, which typically indicates a CORS layer that will be 'fixed' by reflecting arbitrary origins.",
+          "evidence": "Access-Control-Allow-Origin: *\nAccess-Control-Allow-Credentials: true",
+          "remediation": "Maintain a strict allowlist of trusted origins and only return Access-Control-Allow-Credentials: true for those exact origins.",
+          "cwe": "CWE-942",
+          "cwe_name": "Permissive Cross-domain Policy with Untrusted Domains",
+          "wstg": "WSTG-CLNT-07",
+          "owasp": [
+            "A01:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 5.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cors_cache",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-STACK-TRACE-87b8ecabea1c",
+          "rule_id": "DISC-STACK-TRACE",
+          "title": "Stack trace or exception dump disclosed",
+          "severity": "medium",
+          "confidence": "firm",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "The response body contains a raw stack trace or framework exception dump, revealing internal file paths, code structure, library versions and sometimes data values.\n\nDetected pattern: Node.js stack trace (HTTP 500).",
+          "evidence": "erties of undefined (reading 'tenantId')\n    at resolveTenant (/srv/api/src/middleware/tenant.js:42:31)\n    at Layer.handle [as handle_request] (/srv/api/node_modules/express/lib/router/layer.js:95:5)\n    at next (/srv/api/node_modules/express/lib/router/route.js",
+          "remediation": "Handle exceptions centrally, return generic error pages to clients and log the full details server-side only.",
+          "cwe": "CWE-209",
+          "cwe_name": "Generation of Error Message Containing Sensitive Information",
+          "wstg": "WSTG-ERRH-02",
+          "owasp": [
+            "A10:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 5.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-NO-REDIRECT-fb5b12d8557a",
+          "rule_id": "TLS-NO-REDIRECT",
+          "title": "HTTP does not redirect to HTTPS",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "api.acme-corp.example",
+          "url": "http://api.acme-corp.example/",
+          "description": "The plain HTTP endpoint returns content instead of redirecting to HTTPS, allowing users to browse the application unencrypted.",
+          "evidence": "GET http://api.acme-corp.example/ -> HTTP 200 served over cleartext (final URL http://api.acme-corp.example/)",
+          "remediation": "Return a 301/308 redirect from every http:// URL to the equivalent https:// URL and enable HSTS.",
+          "cwe": "CWE-319",
+          "cwe_name": "Cleartext Transmission of Sensitive Information",
+          "wstg": "WSTG-CRYP-03",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N",
+          "cvss_score": 5.4,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CACHE-SENSITIVE-NO-STORE-178d730f67e6",
+          "rule_id": "CACHE-SENSITIVE-NO-STORE",
+          "title": "Sensitive response cacheable (missing Cache-Control: no-store)",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "A response that sets session cookies or contains a login form does not prevent caching. Shared proxies or browser history on shared machines may retain sensitive content.\n\nResponse considered sensitive because it sets session cookie(s): connect.sid.",
+          "evidence": "Cache-Control: (absent); Pragma: (absent)",
+          "remediation": "Send 'Cache-Control: no-store' (and 'Pragma: no-cache' for HTTP/1.0 caches) on authenticated and credential-handling responses.",
+          "cwe": "CWE-525",
+          "cwe_name": "Use of Web Browser Cache Containing Sensitive Information",
+          "wstg": "WSTG-ATHN-06",
+          "owasp": [
+            "A07:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 4.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cors_cache",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-NO-SAMESITE-3067e2e31cd2",
+          "rule_id": "CKE-NO-SAMESITE",
+          "title": "Cookie without SameSite attribute",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "A cookie is issued without an explicit SameSite attribute. Browser defaults vary, and older clients will attach it to cross-site requests, increasing CSRF exposure.",
+          "evidence": "Set-Cookie: connect.sid=s%3A\u2026[redacted]; Path=/; HttpOnly",
+          "remediation": "Set SameSite=Lax (or Strict for highly sensitive cookies) explicitly on every cookie.",
+          "cwe": "CWE-1275",
+          "cwe_name": "Sensitive Cookie with Improper SameSite Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025",
+            "A06:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://owasp.org/www-community/SameSite"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-PRIVATE-IP-e497a26da583",
+          "rule_id": "DISC-PRIVATE-IP",
+          "title": "Private IP address disclosed",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "An RFC 1918 private IP address appears in the response headers or body, revealing internal network addressing.",
+          "evidence": "Private address(es): 10.20.4.17",
+          "remediation": "Remove internal addresses from responses; review reverse proxy headers and templated configuration values.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-05",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-VERSION-HEADER-b744c42afa6c",
+          "rule_id": "DISC-VERSION-HEADER",
+          "title": "Technology version disclosed in response header",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "Headers such as X-Powered-By, X-AspNet-Version, X-AspNetMvc-Version or X-Generator reveal the application framework and version.",
+          "evidence": "x-powered-by: Express",
+          "remediation": "Remove framework identification headers (e.g. Express 'app.disable(\"x-powered-by\")', PHP 'expose_php = Off', ASP.NET 'enableVersionHeader=\"false\"').",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-08",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-XCTO-MISSING-e83c688b79e9",
+          "rule_id": "HDR-XCTO-MISSING",
+          "title": "X-Content-Type-Options header missing",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "api.acme-corp.example",
+          "url": "https://api.acme-corp.example/",
+          "description": "The response does not include 'X-Content-Type-Options: nosniff'. Browsers may MIME-sniff responses and interpret user-controlled content as script or HTML.",
+          "evidence": "No X-Content-Type-Options header",
+          "remediation": "Send 'X-Content-Type-Options: nosniff' on all responses and ensure accurate Content-Type headers.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-content-type-options"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "retest_queue": [],
+      "technologies": [],
+      "tool_runs": [],
+      "app_map": {
+        "endpoints": [
+          {
+            "url": "https://api.acme-corp.example/",
+            "method": "GET",
+            "params": [],
+            "source": "page"
+          }
+        ],
+        "truncated": false
+      },
+      "retest_rounds_run": 0,
+      "score": 53,
+      "grade": "F",
+      "categories": [
+        {
+          "id": "A01:2025",
+          "name": "Broken Access Control",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CORS-WILDCARD-CREDENTIALS"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A02:2025",
+          "name": "Security Misconfiguration",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 6,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "CORS-WILDCARD-CREDENTIALS",
+            "DISC-PRIVATE-IP",
+            "DISC-STACK-TRACE",
+            "DISC-VERSION-HEADER",
+            "HDR-XCTO-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A03:2025",
+          "name": "Software Supply Chain Failures",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A04:2025",
+          "name": "Cryptographic Failures",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 2,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CKE-NO-SECURE",
+            "TLS-NO-REDIRECT"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A05:2025",
+          "name": "Injection",
+          "status": "warning",
+          "coverage": "indicators",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "HDR-XCTO-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A06:2025",
+          "name": "Insecure Design",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "CKE-NO-SAMESITE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A07:2025",
+          "name": "Authentication Failures",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 3,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "CKE-NO-SAMESITE",
+            "CKE-NO-SECURE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A08:2025",
+          "name": "Software or Data Integrity Failures",
+          "status": "pass",
+          "coverage": "high",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A09:2025",
+          "name": "Security Logging and Alerting Failures",
+          "status": "manual_review",
+          "coverage": "manual",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A10:2025",
+          "name": "Mishandling of Exceptional Conditions",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "medium",
+          "rule_ids": [
+            "DISC-STACK-TRACE"
+          ],
+          "pass_rate": null
+        }
+      ],
+      "severity_counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 4,
+        "low": 5,
+        "info": 0
+      },
+      "error": null,
+      "scanned_at": "2026-11-22T12:30:53.844643Z",
+      "duration_ms": 308
+    },
+    {
+      "subdomain": "admin.acme-corp.example",
+      "reachable": true,
+      "scheme": "https",
+      "status_code": 500,
+      "final_url": "https://admin.acme-corp.example/",
+      "ip_addresses": [
+        "203.0.113.40"
+      ],
+      "https_redirect": true,
+      "https": {
+        "url": "https://admin.acme-corp.example/",
+        "final_url": "https://admin.acme-corp.example/",
+        "status_code": 500,
+        "headers": {
+          "server": "Apache/2.4.29 (Ubuntu)",
+          "x-frame-options": "SAMEORIGIN",
+          "set-cookie": "csrftoken=Jx7Kq2; Path=/; SameSite=Lax\nsessionid=8xk2m9p4q7; Path=/; HttpOnly",
+          "content-length": "755",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [],
+        "elapsed_ms": 0,
+        "body_bytes": 755,
+        "error": null
+      },
+      "http": {
+        "url": "http://admin.acme-corp.example/",
+        "final_url": "https://admin.acme-corp.example/",
+        "status_code": 500,
+        "headers": {
+          "server": "Apache/2.4.29 (Ubuntu)",
+          "x-frame-options": "SAMEORIGIN",
+          "set-cookie": "csrftoken=Jx7Kq2; Path=/; SameSite=Lax\nsessionid=8xk2m9p4q7; Path=/; HttpOnly",
+          "content-length": "755",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [
+          {
+            "url": "http://admin.acme-corp.example/",
+            "status_code": 301,
+            "location": "https://admin.acme-corp.example/"
+          }
+        ],
+        "elapsed_ms": 201,
+        "body_bytes": 755,
+        "error": null
+      },
+      "tls": {
+        "host": "admin.acme-corp.example",
+        "port": 443,
+        "protocol": "TLSv1.2",
+        "cipher": "ECDHE-RSA-DES-CBC3-SHA",
+        "cipher_bits": 112,
+        "cert_subject": "commonName=acme-admin-internal",
+        "cert_issuer": "commonName=acme-admin-internal",
+        "cert_serial": "4a1f9be20c3d7e",
+        "cert_not_before": "2024-09-13T12:30:53.843438Z",
+        "cert_not_after": "2026-10-18T12:30:53.843438Z",
+        "days_to_expiry": -35,
+        "san": [
+          "acme-admin-internal",
+          "localhost"
+        ],
+        "self_signed": true,
+        "hostname_match": false,
+        "trusted": false,
+        "verify_error": "self-signed certificate",
+        "legacy_protocols_accepted": [
+          "TLSv1"
+        ],
+        "legacy_probe": "completed",
+        "error": null
+      },
+      "findings": [
+        {
+          "id": "TLS-CERT-EXPIRED-122dca2cad60",
+          "rule_id": "TLS-CERT-EXPIRED",
+          "title": "TLS certificate expired or not yet valid",
+          "severity": "high",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The certificate presented by the server is outside its validity window. Browsers show interstitial warnings, training users to click through certificate errors.",
+          "evidence": "Valid 2024-09-13T12:30:53.843438+00:00 to 2026-10-18T12:30:53.843438+00:00; observed 2026-11-22T12:30:54+00:00",
+          "remediation": "Renew the certificate immediately and automate renewal (e.g. ACME) with expiry monitoring.",
+          "cwe": "CWE-298",
+          "cwe_name": "Improper Validation of Certificate Expiration",
+          "wstg": "WSTG-CRYP-01",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+          "cvss_score": 6.8,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-CERT-HOSTNAME-MISMATCH-c835d97e0756",
+          "rule_id": "TLS-CERT-HOSTNAME-MISMATCH",
+          "title": "TLS certificate hostname mismatch",
+          "severity": "high",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "None of the certificate's Subject Alternative Names (or Common Name) match the audited hostname, so clients cannot authenticate the server.",
+          "evidence": "Host admin.acme-corp.example not in certificate names: acme-admin-internal, localhost",
+          "remediation": "Issue a certificate whose SAN list covers this hostname (or an appropriate wildcard) and deploy it on the correct virtual host / SNI configuration.",
+          "cwe": "CWE-297",
+          "cwe_name": "Improper Validation of Certificate with Host Mismatch",
+          "wstg": "WSTG-CRYP-01",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+          "cvss_score": 6.8,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-CERT-UNTRUSTED-c825f6c474e3",
+          "rule_id": "TLS-CERT-UNTRUSTED",
+          "title": "TLS certificate not trusted",
+          "severity": "high",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The certificate chain could not be validated against the public trust store (self-signed, unknown issuer or incomplete chain).",
+          "evidence": "Verification error: self-signed certificate; issuer: commonName=acme-admin-internal (self-signed)",
+          "remediation": "Deploy a certificate issued by a publicly trusted CA and serve the complete intermediate chain.",
+          "cwe": "CWE-295",
+          "cwe_name": "Improper Certificate Validation",
+          "wstg": "WSTG-CRYP-01",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:N",
+          "cvss_score": 6.8,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html#certificates"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-DEPRECATED-PROTOCOL-2b899c721d68",
+          "rule_id": "TLS-DEPRECATED-PROTOCOL",
+          "title": "Deprecated TLS protocol supported",
+          "severity": "high",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The server negotiated or accepted TLS 1.0/1.1 (or older). These protocols are deprecated by RFC 8996 and lack modern cryptographic protections.",
+          "evidence": "Negotiated: TLSv1.2; legacy handshake accepted: TLSv1",
+          "remediation": "Disable SSLv3, TLS 1.0 and TLS 1.1. Support TLS 1.2 with AEAD cipher suites and TLS 1.3.",
+          "cwe": "CWE-326",
+          "cwe_name": "Inadequate Encryption Strength",
+          "wstg": "WSTG-CRYP-01",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+          "cvss_score": 5.9,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/01-Testing_for_Weak_Transport_Layer_Security",
+            "https://datatracker.ietf.org/doc/html/rfc8996"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-NO-SECURE-5ceb95e65e01",
+          "rule_id": "CKE-NO-SECURE",
+          "title": "Cookie without Secure flag",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "A cookie is issued without the Secure attribute, so the browser will also transmit it over unencrypted HTTP connections where it can be intercepted.",
+          "evidence": "Set-Cookie: csrftoken=Jx7K\u2026[redacted]; Path=/; SameSite=Lax",
+          "remediation": "Set the Secure attribute on all cookies, and use the __Host- prefix for session cookies.",
+          "cwe": "CWE-614",
+          "cwe_name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A04:2025",
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 4.8,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-DEBUG-MODE-f9d1f48ae8c1",
+          "rule_id": "DISC-DEBUG-MODE",
+          "title": "Debug mode or developer tooling exposed",
+          "severity": "medium",
+          "confidence": "firm",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The response shows signs of a framework running in debug/development mode (Django DEBUG page, Werkzeug debugger, Laravel Ignition/Whoops, Symfony profiler, Rails debug exception page or X-Debug-Token headers).\n\nDetected: Django DEBUG=True.",
+          "evidence": "/table>\n</div>\n<div id=\"explanation\"><p>You're seeing this error because you have <code>DEBUG = True</code> in your Django settings file.\nChange that to <code>False</code>, and Django will display a standard page generated by the handler for this status code.</p></di",
+          "remediation": "Disable debug mode in production deployments and remove developer toolbars and profilers.",
+          "cwe": "CWE-489",
+          "cwe_name": "Active Debug Code",
+          "wstg": "WSTG-ERRH-01",
+          "owasp": [
+            "A02:2025",
+            "A10:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 5.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/01-Testing_For_Improper_Error_Handling"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-CSP-MISSING-8d5b012343d6",
+          "rule_id": "HDR-CSP-MISSING",
+          "title": "Content-Security-Policy header missing",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The HTML response does not define a Content-Security-Policy. Without CSP the browser has no policy to restrict script sources, which removes an important mitigation against cross-site scripting and data injection.",
+          "evidence": "No Content-Security-Policy header or meta tag",
+          "remediation": "Deploy a restrictive Content-Security-Policy (start with default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self') and tighten it with nonces or hashes. Roll out using Content-Security-Policy-Report-Only first.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-12",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 4.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/12-Test_for_Content_Security_Policy",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-HSTS-MISSING-ddc446821ccd",
+          "rule_id": "HDR-HSTS-MISSING",
+          "title": "Strict-Transport-Security header missing",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The HTTPS response does not include a Strict-Transport-Security header. Users who type the bare hostname or follow http:// links can be downgraded by an on-path attacker (SSL stripping).",
+          "evidence": "No Strict-Transport-Security header",
+          "remediation": "Send 'Strict-Transport-Security: max-age=31536000; includeSubDomains' on every HTTPS response and consider HSTS preloading once all subdomains support HTTPS.",
+          "cwe": "CWE-319",
+          "cwe_name": "Cleartext Transmission of Sensitive Information",
+          "wstg": "WSTG-CONF-07",
+          "owasp": [
+            "A04:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:N",
+          "cvss_score": 5.4,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/07-Test_HTTP_Strict_Transport_Security",
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-WEAK-CIPHER-1e7565467e9f",
+          "rule_id": "TLS-WEAK-CIPHER",
+          "title": "Weak TLS cipher suite negotiated",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The cipher suite negotiated with a standard client uses a broken or legacy algorithm (RC4, DES/3DES, NULL, EXPORT, anonymous key exchange or MD5) or an effective key length below 128 bits.",
+          "evidence": "TLSv1.2 ECDHE-RSA-DES-CBC3-SHA (112 bits)",
+          "remediation": "Restrict the server to AEAD cipher suites (AES-GCM, ChaCha20-Poly1305) with forward secrecy (ECDHE).",
+          "cwe": "CWE-327",
+          "cwe_name": "Use of a Broken or Risky Cryptographic Algorithm",
+          "wstg": "WSTG-CRYP-01",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+          "cvss_score": 5.9,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CACHE-SENSITIVE-NO-STORE-2f2bf1caae21",
+          "rule_id": "CACHE-SENSITIVE-NO-STORE",
+          "title": "Sensitive response cacheable (missing Cache-Control: no-store)",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "A response that sets session cookies or contains a login form does not prevent caching. Shared proxies or browser history on shared machines may retain sensitive content.\n\nResponse considered sensitive because it sets session cookie(s): sessionid.",
+          "evidence": "Cache-Control: (absent); Pragma: (absent)",
+          "remediation": "Send 'Cache-Control: no-store' (and 'Pragma: no-cache' for HTTP/1.0 caches) on authenticated and credential-handling responses.",
+          "cwe": "CWE-525",
+          "cwe_name": "Use of Web Browser Cache Containing Sensitive Information",
+          "wstg": "WSTG-ATHN-06",
+          "owasp": [
+            "A07:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 4.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cors_cache",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-NO-SAMESITE-248b9e986972",
+          "rule_id": "CKE-NO-SAMESITE",
+          "title": "Cookie without SameSite attribute",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "A cookie is issued without an explicit SameSite attribute. Browser defaults vary, and older clients will attach it to cross-site requests, increasing CSRF exposure.",
+          "evidence": "Set-Cookie: sessionid=8xk2\u2026[redacted]; Path=/; HttpOnly",
+          "remediation": "Set SameSite=Lax (or Strict for highly sensitive cookies) explicitly on every cookie.",
+          "cwe": "CWE-1275",
+          "cwe_name": "Sensitive Cookie with Improper SameSite Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025",
+            "A06:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://owasp.org/www-community/SameSite"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-PRIVATE-IP-df3e091361a5",
+          "rule_id": "DISC-PRIVATE-IP",
+          "title": "Private IP address disclosed",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "An RFC 1918 private IP address appears in the response headers or body, revealing internal network addressing.",
+          "evidence": "Private address(es): 10.0.12.5",
+          "remediation": "Remove internal addresses from responses; review reverse proxy headers and templated configuration values.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-05",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/05-Review_Webpage_Content_for_Information_Leakage"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-SERVER-VERSION-d94dbec73e5b",
+          "rule_id": "DISC-SERVER-VERSION",
+          "title": "Server version disclosed in banner",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The Server header reveals the product and exact version, letting attackers quickly match the host against known vulnerabilities.",
+          "evidence": "Server: Apache/2.4.29 (Ubuntu)",
+          "remediation": "Suppress version details (e.g. nginx 'server_tokens off;', Apache 'ServerTokens Prod' / 'ServerSignature Off').",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-02",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-XCTO-MISSING-0b9eb41a7728",
+          "rule_id": "HDR-XCTO-MISSING",
+          "title": "X-Content-Type-Options header missing",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "The response does not include 'X-Content-Type-Options: nosniff'. Browsers may MIME-sniff responses and interpret user-controlled content as script or HTML.",
+          "evidence": "No X-Content-Type-Options header",
+          "remediation": "Send 'X-Content-Type-Options: nosniff' on all responses and ensure accurate Content-Type headers.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-content-type-options"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "META-SECURITY-TXT-INVALID-cd069493566e",
+          "rule_id": "META-SECURITY-TXT-INVALID",
+          "title": "security.txt incomplete or expired",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/.well-known/security.txt",
+          "description": "The security.txt file is missing the required Contact or Expires field, or its Expires date has passed (RFC 9116 section 2.5).\n\nProblems: expired on 2024-01-31.",
+          "evidence": "Contact: mailto:security@acme-corp.example\nExpires: 2024-01-31T23:59:59Z",
+          "remediation": "Add the required Contact and Expires fields and keep the expiry date current (less than one year ahead).",
+          "cwe": "CWE-1059",
+          "cwe_name": "Insufficient Technical Documentation",
+          "wstg": "WSTG-INFO-03",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://www.rfc-editor.org/rfc/rfc9116"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "metadata",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-PERMISSIONS-MISSING-69289a799316",
+          "rule_id": "HDR-PERMISSIONS-MISSING",
+          "title": "Permissions-Policy header missing",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "No Permissions-Policy is defined, so powerful browser features (camera, microphone, geolocation, payment) are not explicitly restricted for this origin and embedded frames.",
+          "evidence": "No Permissions-Policy header",
+          "remediation": "Send a Permissions-Policy disabling unused features, e.g. 'Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()'.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#permissions-policy-formerly-feature-policy"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-REFERRER-MISSING-781a079ab899",
+          "rule_id": "HDR-REFERRER-MISSING",
+          "title": "Referrer-Policy header missing",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/",
+          "description": "No Referrer-Policy is defined. Modern browsers default to strict-origin-when-cross-origin, but older clients may leak full URLs (including tokens in query strings) to third parties.",
+          "evidence": "No Referrer-Policy header",
+          "remediation": "Send 'Referrer-Policy: strict-origin-when-cross-origin' or 'no-referrer' for sensitive applications.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#referrer-policy"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "retest_queue": [
+        {
+          "id": "META-ROBOTS-SENSITIVE-82eecdd49eaa",
+          "rule_id": "META-ROBOTS-SENSITIVE",
+          "title": "robots.txt reveals sensitive paths",
+          "severity": "info",
+          "confidence": "tentative",
+          "subdomain": "admin.acme-corp.example",
+          "url": "https://admin.acme-corp.example/robots.txt",
+          "description": "robots.txt Disallow entries advertise administrative, backup, configuration or internal paths. robots.txt is not an access control and acts as a roadmap for attackers. (WAPTrix does not request these paths.)\n\n3 sensitive-looking path(s) advertised.",
+          "evidence": "Disallow: /django-admin/\nDisallow: /backup/\nDisallow: /internal/reports/",
+          "remediation": "Protect sensitive paths with authentication and network controls; avoid listing them in robots.txt.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-03",
+          "owasp": [
+            "A01:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/03-Review_Webserver_Metafiles_for_Information_Leakage"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "metadata",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "technologies": [],
+      "tool_runs": [],
+      "app_map": {
+        "endpoints": [
+          {
+            "url": "https://admin.acme-corp.example/",
+            "method": "GET",
+            "params": [],
+            "source": "page"
+          }
+        ],
+        "truncated": false
+      },
+      "retest_rounds_run": 0,
+      "score": 0,
+      "grade": "F",
+      "categories": [
+        {
+          "id": "A01:2025",
+          "name": "Broken Access Control",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A02:2025",
+          "name": "Security Misconfiguration",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 10,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "DISC-DEBUG-MODE",
+            "DISC-PRIVATE-IP",
+            "DISC-SERVER-VERSION",
+            "HDR-CSP-MISSING",
+            "HDR-HSTS-MISSING",
+            "HDR-PERMISSIONS-MISSING",
+            "HDR-REFERRER-MISSING",
+            "HDR-XCTO-MISSING",
+            "META-SECURITY-TXT-INVALID"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A03:2025",
+          "name": "Software Supply Chain Failures",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A04:2025",
+          "name": "Cryptographic Failures",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 7,
+          "max_severity": "high",
+          "rule_ids": [
+            "CKE-NO-SECURE",
+            "HDR-HSTS-MISSING",
+            "TLS-CERT-EXPIRED",
+            "TLS-CERT-HOSTNAME-MISMATCH",
+            "TLS-CERT-UNTRUSTED",
+            "TLS-DEPRECATED-PROTOCOL",
+            "TLS-WEAK-CIPHER"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A05:2025",
+          "name": "Injection",
+          "status": "fail",
+          "coverage": "indicators",
+          "finding_count": 2,
+          "max_severity": "medium",
+          "rule_ids": [
+            "HDR-CSP-MISSING",
+            "HDR-XCTO-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A06:2025",
+          "name": "Insecure Design",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "CKE-NO-SAMESITE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A07:2025",
+          "name": "Authentication Failures",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 3,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "CKE-NO-SAMESITE",
+            "CKE-NO-SECURE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A08:2025",
+          "name": "Software or Data Integrity Failures",
+          "status": "pass",
+          "coverage": "high",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A09:2025",
+          "name": "Security Logging and Alerting Failures",
+          "status": "manual_review",
+          "coverage": "manual",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A10:2025",
+          "name": "Mishandling of Exceptional Conditions",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "medium",
+          "rule_ids": [
+            "DISC-DEBUG-MODE"
+          ],
+          "pass_rate": null
+        }
+      ],
+      "severity_counts": {
+        "critical": 0,
+        "high": 4,
+        "medium": 5,
+        "low": 6,
+        "info": 2
+      },
+      "error": null,
+      "scanned_at": "2026-11-22T12:30:53.844660Z",
+      "duration_ms": 414
+    },
+    {
+      "subdomain": "legacy.acme-corp.example",
+      "reachable": true,
+      "scheme": "http",
+      "status_code": 200,
+      "final_url": "http://legacy.acme-corp.example/",
+      "ip_addresses": [
+        "203.0.113.77"
+      ],
+      "https_redirect": false,
+      "https": {
+        "url": "https://legacy.acme-corp.example/",
+        "final_url": null,
+        "status_code": null,
+        "headers": {},
+        "redirect_chain": [],
+        "elapsed_ms": 0,
+        "body_bytes": 0,
+        "error": "connection failed: [Errno 61] Connection refused"
+      },
+      "http": {
+        "url": "http://legacy.acme-corp.example/",
+        "final_url": "http://legacy.acme-corp.example/",
+        "status_code": 200,
+        "headers": {
+          "server": "Microsoft-IIS/8.5",
+          "x-powered-by": "ASP.NET",
+          "x-aspnet-version": "4.0.30319",
+          "set-cookie": "ASP.NET_SessionId=qwe3rty4uio5; path=/",
+          "content-length": "496",
+          "content-type": "text/html; charset=utf-8"
+        },
+        "redirect_chain": [],
+        "elapsed_ms": 101,
+        "body_bytes": 496,
+        "error": null
+      },
+      "tls": {
+        "host": "legacy.acme-corp.example",
+        "port": 443,
+        "protocol": null,
+        "cipher": null,
+        "cipher_bits": null,
+        "cert_subject": null,
+        "cert_issuer": null,
+        "cert_serial": null,
+        "cert_not_before": null,
+        "cert_not_after": null,
+        "days_to_expiry": null,
+        "san": [],
+        "self_signed": false,
+        "hostname_match": null,
+        "trusted": null,
+        "verify_error": null,
+        "legacy_protocols_accepted": [],
+        "legacy_probe": "not_run",
+        "error": "TLS handshake failed: [Errno 61] Connection refused"
+      },
+      "findings": [
+        {
+          "id": "FORM-PASSWORD-OVER-HTTP-457ff83147de",
+          "rule_id": "FORM-PASSWORD-OVER-HTTP",
+          "title": "Cleartext submission of password",
+          "severity": "high",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A form containing a password field is served over HTTP or submits to an http:// action, exposing credentials to network attackers.\n\nPage scheme: http; resolved action: http://legacy.acme-corp.example/login.php",
+          "evidence": "<form method=\"POST\" action=\"login.php\"> fields: user, pass",
+          "remediation": "Serve login pages exclusively over HTTPS and ensure form actions use https:// (or relative URLs on an HTTPS page).",
+          "cwe": "CWE-319",
+          "cwe_name": "Cleartext Transmission of Sensitive Information",
+          "wstg": "WSTG-ATHN-01",
+          "owasp": [
+            "A04:2025",
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 5.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/01-Testing_for_Credentials_Transported_over_an_Encrypted_Channel"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "TLS-NO-HTTPS-434b586028a7",
+          "rule_id": "TLS-NO-HTTPS",
+          "title": "HTTPS not available",
+          "severity": "high",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "The host serves content over plain HTTP but no working HTTPS endpoint was observed. All traffic, including cookies and credentials, travels in cleartext.",
+          "evidence": "http://legacy.acme-corp.example/ -> HTTP 200; HTTPS: connection failed: [Errno 61] Connection refused",
+          "remediation": "Provision a valid TLS certificate, serve the application exclusively over HTTPS and redirect all HTTP requests with a 301 to the HTTPS origin.",
+          "cwe": "CWE-319",
+          "cwe_name": "Cleartext Transmission of Sensitive Information",
+          "wstg": "WSTG-CRYP-03",
+          "owasp": [
+            "A04:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
+          "cvss_score": 7.1,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/09-Testing_for_Weak_Cryptography/03-Testing_for_Sensitive_Information_Sent_via_Unencrypted_Channels"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "transport_tls",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-NO-SECURE-6458acd5b0e4",
+          "rule_id": "CKE-NO-SECURE",
+          "title": "Cookie without Secure flag",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A cookie is issued without the Secure attribute, so the browser will also transmit it over unencrypted HTTP connections where it can be intercepted.",
+          "evidence": "Set-Cookie: ASP.NET_SessionId=qwe3\u2026[redacted]; path=/",
+          "remediation": "Set the Secure attribute on all cookies, and use the __Host- prefix for session cookies.",
+          "cwe": "CWE-614",
+          "cwe_name": "Sensitive Cookie in HTTPS Session Without 'Secure' Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A04:2025",
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:A/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 4.8,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-SESSION-NO-HTTPONLY-607652747272",
+          "rule_id": "CKE-SESSION-NO-HTTPONLY",
+          "title": "Session cookie without HttpOnly flag",
+          "severity": "medium",
+          "confidence": "firm",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A cookie whose name indicates a session or authentication token lacks the HttpOnly attribute, so any cross-site scripting flaw can steal it via document.cookie.",
+          "evidence": "Set-Cookie: ASP.NET_SessionId=qwe3\u2026[redacted]; path=/",
+          "remediation": "Set HttpOnly on all session and authentication cookies.",
+          "cwe": "CWE-1004",
+          "cwe_name": "Sensitive Cookie Without 'HttpOnly' Flag",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N",
+          "cvss_score": 5.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/02-Testing_for_Cookies_Attributes"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-STACK-TRACE-edc214e49d0b",
+          "rule_id": "DISC-STACK-TRACE",
+          "title": "Stack trace or exception dump disclosed",
+          "severity": "medium",
+          "confidence": "firm",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "The response body contains a raw stack trace or framework exception dump, revealing internal file paths, code structure, library versions and sometimes data values.\n\nDetected pattern: PHP error (HTTP 200).",
+          "evidence": "\"><input type=\"submit\"></form>\n<br /><b>Warning</b>:  mysql_connect(): Access denied for user 'extranet'@'localhost' (using password: YES) in <b>/var/www/extranet/includes/db.php</b> on line <b>14</b><br />\n</body></html>",
+          "remediation": "Handle exceptions centrally, return generic error pages to clients and log the full details server-side only.",
+          "cwe": "CWE-209",
+          "cwe_name": "Generation of Error Message Containing Sensitive Information",
+          "wstg": "WSTG-ERRH-02",
+          "owasp": [
+            "A10:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 5.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/08-Testing_for_Error_Handling/02-Testing_for_Stack_Traces",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-CSP-MISSING-372fd3c51823",
+          "rule_id": "HDR-CSP-MISSING",
+          "title": "Content-Security-Policy header missing",
+          "severity": "medium",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "The HTML response does not define a Content-Security-Policy. Without CSP the browser has no policy to restrict script sources, which removes an important mitigation against cross-site scripting and data injection.",
+          "evidence": "No Content-Security-Policy header or meta tag",
+          "remediation": "Deploy a restrictive Content-Security-Policy (start with default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self') and tighten it with nonces or hashes. Roll out using Content-Security-Policy-Report-Only first.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-12",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:L/I:L/A:N",
+          "cvss_score": 4.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/02-Configuration_and_Deployment_Management_Testing/12-Test_for_Content_Security_Policy",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CACHE-SENSITIVE-NO-STORE-cbe931cbcdba",
+          "rule_id": "CACHE-SENSITIVE-NO-STORE",
+          "title": "Sensitive response cacheable (missing Cache-Control: no-store)",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A response that sets session cookies or contains a login form does not prevent caching. Shared proxies or browser history on shared machines may retain sensitive content.\n\nResponse considered sensitive because it sets session cookie(s): ASP.NET_SessionId and contains a password input.",
+          "evidence": "Cache-Control: (absent); Pragma: (absent)",
+          "remediation": "Send 'Cache-Control: no-store' (and 'Pragma: no-cache' for HTTP/1.0 caches) on authenticated and credential-handling responses.",
+          "cwe": "CWE-525",
+          "cwe_name": "Use of Web Browser Cache Containing Sensitive Information",
+          "wstg": "WSTG-ATHN-06",
+          "owasp": [
+            "A07:2025",
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 4.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/06-Testing_for_Browser_Cache_Weaknesses"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cors_cache",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "CKE-NO-SAMESITE-67f186d1f3b6",
+          "rule_id": "CKE-NO-SAMESITE",
+          "title": "Cookie without SameSite attribute",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A cookie is issued without an explicit SameSite attribute. Browser defaults vary, and older clients will attach it to cross-site requests, increasing CSRF exposure.",
+          "evidence": "Set-Cookie: ASP.NET_SessionId=qwe3\u2026[redacted]; path=/",
+          "remediation": "Set SameSite=Lax (or Strict for highly sensitive cookies) explicitly on every cookie.",
+          "cwe": "CWE-1275",
+          "cwe_name": "Sensitive Cookie with Improper SameSite Attribute",
+          "wstg": "WSTG-SESS-02",
+          "owasp": [
+            "A07:2025",
+            "A06:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://owasp.org/www-community/SameSite"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "cookies",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-SERVER-VERSION-cefa5497e3ac",
+          "rule_id": "DISC-SERVER-VERSION",
+          "title": "Server version disclosed in banner",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "The Server header reveals the product and exact version, letting attackers quickly match the host against known vulnerabilities.",
+          "evidence": "Server: Microsoft-IIS/8.5",
+          "remediation": "Suppress version details (e.g. nginx 'server_tokens off;', Apache 'ServerTokens Prod' / 'ServerSignature Off').",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-02",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/02-Fingerprint_Web_Server"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "DISC-VERSION-HEADER-e13c4056a8cc",
+          "rule_id": "DISC-VERSION-HEADER",
+          "title": "Technology version disclosed in response header",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "Headers such as X-Powered-By, X-AspNet-Version, X-AspNetMvc-Version or X-Generator reveal the application framework and version.",
+          "evidence": "x-powered-by: ASP.NET\nx-aspnet-version: 4.0.30319",
+          "remediation": "Remove framework identification headers (e.g. Express 'app.disable(\"x-powered-by\")', PHP 'expose_php = Off', ASP.NET 'enableVersionHeader=\"false\"').",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-INFO-08",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.7,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "disclosure",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-XCTO-MISSING-f26bdef92404",
+          "rule_id": "HDR-XCTO-MISSING",
+          "title": "X-Content-Type-Options header missing",
+          "severity": "low",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "The response does not include 'X-Content-Type-Options: nosniff'. Browsers may MIME-sniff responses and interpret user-controlled content as script or HTML.",
+          "evidence": "No X-Content-Type-Options header",
+          "remediation": "Send 'X-Content-Type-Options: nosniff' on all responses and ensure accurate Content-Type headers.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025",
+            "A05:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:N/A:N",
+          "cvss_score": 3.1,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#x-content-type-options"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-XFO-MISSING-e8759cdeb8b5",
+          "rule_id": "HDR-XFO-MISSING",
+          "title": "Clickjacking protection missing (X-Frame-Options / frame-ancestors)",
+          "severity": "low",
+          "confidence": "firm",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "The HTML response sets neither X-Frame-Options nor a CSP frame-ancestors directive, so the page may be framed by any origin and abused for clickjacking.",
+          "evidence": "No X-Frame-Options or CSP frame-ancestors",
+          "remediation": "Send 'Content-Security-Policy: frame-ancestors 'self'' (preferred) and/or 'X-Frame-Options: DENY' or 'SAMEORIGIN'.",
+          "cwe": "CWE-1021",
+          "cwe_name": "Improper Restriction of Rendered UI Layers or Frames",
+          "wstg": "WSTG-CLNT-09",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 4.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/11-Client-side_Testing/09-Testing_for_Clickjacking",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Clickjacking_Defense_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.72,
+          "correlation": {
+            "score": 0.72,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "FORM-PASSWORD-AUTOCOMPLETE-861e016f5e7e",
+          "rule_id": "FORM-PASSWORD-AUTOCOMPLETE",
+          "title": "Password field with autocomplete enabled",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A password input does not set an autocomplete hint. Browsers may store the value; on shared workstations this can expose credentials. Modern guidance permits password managers, so treat as informational.",
+          "evidence": "<input type=\"password\" name=\"pass\">",
+          "remediation": "Use autocomplete=\"current-password\" / \"new-password\" to cooperate with password managers, or autocomplete=\"off\" for high-risk shared-terminal contexts.",
+          "cwe": "CWE-522",
+          "cwe_name": "Insufficiently Protected Credentials",
+          "wstg": "WSTG-ATHN-05",
+          "owasp": [
+            "A07:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/04-Authentication_Testing/05-Testing_for_Vulnerable_Remember_Password"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-PERMISSIONS-MISSING-d84c829ff861",
+          "rule_id": "HDR-PERMISSIONS-MISSING",
+          "title": "Permissions-Policy header missing",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "No Permissions-Policy is defined, so powerful browser features (camera, microphone, geolocation, payment) are not explicitly restricted for this origin and embedded frames.",
+          "evidence": "No Permissions-Policy header",
+          "remediation": "Send a Permissions-Policy disabling unused features, e.g. 'Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()'.",
+          "cwe": "CWE-693",
+          "cwe_name": "Protection Mechanism Failure",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#permissions-policy-formerly-feature-policy"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "HDR-REFERRER-MISSING-ca2a1649159f",
+          "rule_id": "HDR-REFERRER-MISSING",
+          "title": "Referrer-Policy header missing",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "No Referrer-Policy is defined. Modern browsers default to strict-origin-when-cross-origin, but older clients may leak full URLs (including tokens in query strings) to third parties.",
+          "evidence": "No Referrer-Policy header",
+          "remediation": "Send 'Referrer-Policy: strict-origin-when-cross-origin' or 'no-referrer' for sensitive applications.",
+          "cwe": "CWE-200",
+          "cwe_name": "Exposure of Sensitive Information to an Unauthorized Actor",
+          "wstg": "WSTG-CONF-14",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html#referrer-policy"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "headers",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        },
+        {
+          "id": "META-SECURITY-TXT-MISSING-bfb58b79dfef",
+          "rule_id": "META-SECURITY-TXT-MISSING",
+          "title": "security.txt not published",
+          "severity": "info",
+          "confidence": "certain",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/.well-known/security.txt",
+          "description": "No RFC 9116 security.txt file was found at /.well-known/security.txt, so researchers have no documented channel to report vulnerabilities.",
+          "evidence": "GET http://legacy.acme-corp.example/.well-known/security.txt -> 404 (text/html)",
+          "remediation": "Publish /.well-known/security.txt with at least Contact and Expires fields, ideally signed and including a Policy link.",
+          "cwe": "CWE-1059",
+          "cwe_name": "Insufficient Technical Documentation",
+          "wstg": "WSTG-INFO-03",
+          "owasp": [
+            "A02:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:N/I:N/A:N",
+          "cvss_score": 0.0,
+          "references": [
+            "https://www.rfc-editor.org/rfc/rfc9116",
+            "https://securitytxt.org/"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 1.0,
+          "correlation": {
+            "score": 1.0,
+            "threshold": 0.55,
+            "admitted": true,
+            "confirmed": false,
+            "tag": "metadata",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "retest_queue": [
+        {
+          "id": "FORM-NO-CSRF-TOKEN-f162084bdf27",
+          "rule_id": "FORM-NO-CSRF-TOKEN",
+          "title": "State-changing form without anti-CSRF token",
+          "severity": "low",
+          "confidence": "tentative",
+          "subdomain": "legacy.acme-corp.example",
+          "url": "http://legacy.acme-corp.example/",
+          "description": "A POST form does not contain a hidden field matching common anti-CSRF token names. Unless protected by SameSite cookies or custom headers, it may be vulnerable to cross-site request forgery. Requires manual confirmation.\n\n1 POST form(s) without a recognizable anti-CSRF hidden field.",
+          "evidence": "<form method=\"POST\" action=\"login.php\"> fields: user, pass",
+          "remediation": "Add a per-session or per-request synchronizer token to all state-changing forms and validate it server-side; also set SameSite on session cookies.",
+          "cwe": "CWE-352",
+          "cwe_name": "Cross-Site Request Forgery (CSRF)",
+          "wstg": "WSTG-SESS-05",
+          "owasp": [
+            "A06:2025",
+            "A01:2025"
+          ],
+          "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+          "cvss_score": 4.3,
+          "references": [
+            "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/06-Session_Management_Testing/05-Testing_for_Cross_Site_Request_Forgery",
+            "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+          ],
+          "sources": [
+            "waptrix"
+          ],
+          "tool_refs": [],
+          "correlation_score": 0.45,
+          "correlation": {
+            "score": 0.45,
+            "threshold": 0.55,
+            "admitted": false,
+            "confirmed": false,
+            "tag": "client_forms",
+            "detectors": [
+              "waptrix"
+            ],
+            "applicable": [
+              "waptrix"
+            ],
+            "silent": []
+          }
+        }
+      ],
+      "technologies": [],
+      "tool_runs": [],
+      "app_map": {
+        "endpoints": [
+          {
+            "url": "http://legacy.acme-corp.example/",
+            "method": "GET",
+            "params": [],
+            "source": "page"
+          },
+          {
+            "url": "http://legacy.acme-corp.example/login.php",
+            "method": "POST",
+            "params": [
+              "pass",
+              "user"
+            ],
+            "source": "form"
+          },
+          {
+            "url": "http://legacy.acme-corp.example/js/prototype.js",
+            "method": "GET",
+            "params": [],
+            "source": "script"
+          }
+        ],
+        "truncated": false
+      },
+      "retest_rounds_run": 0,
+      "score": 20,
+      "grade": "F",
+      "categories": [
+        {
+          "id": "A01:2025",
+          "name": "Broken Access Control",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A02:2025",
+          "name": "Security Misconfiguration",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 10,
+          "max_severity": "medium",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "DISC-SERVER-VERSION",
+            "DISC-STACK-TRACE",
+            "DISC-VERSION-HEADER",
+            "HDR-CSP-MISSING",
+            "HDR-PERMISSIONS-MISSING",
+            "HDR-REFERRER-MISSING",
+            "HDR-XCTO-MISSING",
+            "HDR-XFO-MISSING",
+            "META-SECURITY-TXT-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A03:2025",
+          "name": "Software Supply Chain Failures",
+          "status": "pass",
+          "coverage": "partial",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A04:2025",
+          "name": "Cryptographic Failures",
+          "status": "fail",
+          "coverage": "high",
+          "finding_count": 3,
+          "max_severity": "high",
+          "rule_ids": [
+            "CKE-NO-SECURE",
+            "FORM-PASSWORD-OVER-HTTP",
+            "TLS-NO-HTTPS"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A05:2025",
+          "name": "Injection",
+          "status": "fail",
+          "coverage": "indicators",
+          "finding_count": 2,
+          "max_severity": "medium",
+          "rule_ids": [
+            "HDR-CSP-MISSING",
+            "HDR-XCTO-MISSING"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A06:2025",
+          "name": "Insecure Design",
+          "status": "warning",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "low",
+          "rule_ids": [
+            "CKE-NO-SAMESITE"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A07:2025",
+          "name": "Authentication Failures",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 6,
+          "max_severity": "high",
+          "rule_ids": [
+            "CACHE-SENSITIVE-NO-STORE",
+            "CKE-NO-SAMESITE",
+            "CKE-NO-SECURE",
+            "CKE-SESSION-NO-HTTPONLY",
+            "FORM-PASSWORD-AUTOCOMPLETE",
+            "FORM-PASSWORD-OVER-HTTP"
+          ],
+          "pass_rate": null
+        },
+        {
+          "id": "A08:2025",
+          "name": "Software or Data Integrity Failures",
+          "status": "pass",
+          "coverage": "high",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A09:2025",
+          "name": "Security Logging and Alerting Failures",
+          "status": "manual_review",
+          "coverage": "manual",
+          "finding_count": 0,
+          "max_severity": null,
+          "rule_ids": [],
+          "pass_rate": null
+        },
+        {
+          "id": "A10:2025",
+          "name": "Mishandling of Exceptional Conditions",
+          "status": "fail",
+          "coverage": "partial",
+          "finding_count": 1,
+          "max_severity": "medium",
+          "rule_ids": [
+            "DISC-STACK-TRACE"
+          ],
+          "pass_rate": null
+        }
+      ],
+      "severity_counts": {
+        "critical": 0,
+        "high": 2,
+        "medium": 4,
+        "low": 6,
+        "info": 4
+      },
+      "error": null,
+      "scanned_at": "2026-11-22T12:30:53.844675Z",
+      "duration_ms": 318
+    }
+  ],
+  "scope_rejections": [
+    {
+      "input": "*.acme-corp.example",
+      "reason": "wildcards are not allowed; list each subdomain explicitly"
+    },
+    {
+      "input": "vendor-portal.example.net",
+      "reason": "outside declared scope domains"
+    }
+  ],
+  "summary": {
+    "overall_score": 42,
+    "grade": "F",
+    "subdomains_total": 5,
+    "subdomains_reachable": 5,
+    "total_findings": 65,
+    "total_retest": 7,
+    "severity_counts": {
+      "critical": 0,
+      "high": 6,
+      "medium": 16,
+      "low": 30,
+      "info": 13
+    },
+    "grade_distribution": {
+      "A": 1,
+      "B": 0,
+      "C": 0,
+      "D": 0,
+      "F": 4,
+      "N/A": 0
+    },
+    "categories": [
+      {
+        "id": "A01:2025",
+        "name": "Broken Access Control",
+        "status": "fail",
+        "coverage": "partial",
+        "finding_count": 2,
+        "max_severity": "medium",
+        "rule_ids": [
+          "CKE-BROAD-DOMAIN",
+          "CORS-WILDCARD-CREDENTIALS"
+        ],
+        "pass_rate": 0.6
+      },
+      {
+        "id": "A02:2025",
+        "name": "Security Misconfiguration",
+        "status": "fail",
+        "coverage": "high",
+        "finding_count": 37,
+        "max_severity": "medium",
+        "rule_ids": [
+          "CACHE-SENSITIVE-NO-STORE",
+          "CORS-WILDCARD-CREDENTIALS",
+          "DISC-DEBUG-MODE",
+          "DISC-EMAIL",
+          "DISC-PRIVATE-IP",
+          "DISC-SERVER-VERSION",
+          "DISC-STACK-TRACE",
+          "DISC-VERSION-HEADER",
+          "HDR-CSP-MISSING",
+          "HDR-CSP-WEAK",
+          "HDR-HSTS-MISSING",
+          "HDR-PERMISSIONS-MISSING",
+          "HDR-REFERRER-MISSING",
+          "HDR-XCTO-MISSING",
+          "HDR-XFO-MISSING",
+          "META-SECURITY-TXT-INVALID",
+          "META-SECURITY-TXT-MISSING"
+        ],
+        "pass_rate": 0.0
+      },
+      {
+        "id": "A03:2025",
+        "name": "Software Supply Chain Failures",
+        "status": "warning",
+        "coverage": "partial",
+        "finding_count": 2,
+        "max_severity": "low",
+        "rule_ids": [
+          "SRI-MISSING-SCRIPT"
+        ],
+        "pass_rate": 0.6
+      },
+      {
+        "id": "A04:2025",
+        "name": "Cryptographic Failures",
+        "status": "fail",
+        "coverage": "high",
+        "finding_count": 16,
+        "max_severity": "high",
+        "rule_ids": [
+          "CKE-NO-SECURE",
+          "FORM-PASSWORD-OVER-HTTP",
+          "HDR-HSTS-MISSING",
+          "HDR-HSTS-WEAK",
+          "TLS-CERT-EXPIRED",
+          "TLS-CERT-EXPIRING",
+          "TLS-CERT-HOSTNAME-MISMATCH",
+          "TLS-CERT-UNTRUSTED",
+          "TLS-DEPRECATED-PROTOCOL",
+          "TLS-MIXED-CONTENT-PASSIVE",
+          "TLS-NO-HTTPS",
+          "TLS-NO-REDIRECT",
+          "TLS-WEAK-CIPHER"
+        ],
+        "pass_rate": 0.2
+      },
+      {
+        "id": "A05:2025",
+        "name": "Injection",
+        "status": "fail",
+        "coverage": "indicators",
+        "finding_count": 8,
+        "max_severity": "medium",
+        "rule_ids": [
+          "HDR-CSP-MISSING",
+          "HDR-CSP-WEAK",
+          "HDR-XCTO-MISSING"
+        ],
+        "pass_rate": 0.0
+      },
+      {
+        "id": "A06:2025",
+        "name": "Insecure Design",
+        "status": "warning",
+        "coverage": "partial",
+        "finding_count": 4,
+        "max_severity": "low",
+        "rule_ids": [
+          "CKE-NO-SAMESITE"
+        ],
+        "pass_rate": 0.2
+      },
+      {
+        "id": "A07:2025",
+        "name": "Authentication Failures",
+        "status": "fail",
+        "coverage": "partial",
+        "finding_count": 18,
+        "max_severity": "high",
+        "rule_ids": [
+          "CACHE-SENSITIVE-NO-STORE",
+          "CKE-BROAD-DOMAIN",
+          "CKE-NO-SAMESITE",
+          "CKE-NO-SECURE",
+          "CKE-SESSION-NO-HTTPONLY",
+          "FORM-PASSWORD-AUTOCOMPLETE",
+          "FORM-PASSWORD-OVER-HTTP"
+        ],
+        "pass_rate": 0.2
+      },
+      {
+        "id": "A08:2025",
+        "name": "Software or Data Integrity Failures",
+        "status": "warning",
+        "coverage": "high",
+        "finding_count": 4,
+        "max_severity": "low",
+        "rule_ids": [
+          "SRI-MISSING-SCRIPT",
+          "SRI-MISSING-STYLESHEET"
+        ],
+        "pass_rate": 0.6
+      },
+      {
+        "id": "A09:2025",
+        "name": "Security Logging and Alerting Failures",
+        "status": "manual_review",
+        "coverage": "manual",
+        "finding_count": 0,
+        "max_severity": null,
+        "rule_ids": [],
+        "pass_rate": null
+      },
+      {
+        "id": "A10:2025",
+        "name": "Mishandling of Exceptional Conditions",
+        "status": "fail",
+        "coverage": "partial",
+        "finding_count": 3,
+        "max_severity": "medium",
+        "rule_ids": [
+          "DISC-DEBUG-MODE",
+          "DISC-STACK-TRACE"
+        ],
+        "pass_rate": 0.4
+      }
+    ],
+    "top_rules": [
+      {
+        "rule_id": "TLS-CERT-EXPIRED",
+        "title": "TLS certificate expired or not yet valid",
+        "severity": "high",
+        "count": 1,
+        "subdomains": 1
+      },
+      {
+        "rule_id": "TLS-CERT-HOSTNAME-MISMATCH",
+        "title": "TLS certificate hostname mismatch",
+        "severity": "high",
+        "count": 1,
+        "subdomains": 1
+      },
+      {
+        "rule_id": "TLS-CERT-UNTRUSTED",
+        "title": "TLS certificate not trusted",
+        "severity": "high",
+        "count": 1,
+        "subdomains": 1
+      },
+      {
+        "rule_id": "TLS-DEPRECATED-PROTOCOL",
+        "title": "Deprecated TLS protocol supported",
+        "severity": "high",
+        "count": 1,
+        "subdomains": 1
+      },
+      {
+        "rule_id": "FORM-PASSWORD-OVER-HTTP",
+        "title": "Cleartext submission of password",
+        "severity": "high",
+        "count": 1,
+        "subdomains": 1
+      },
+      {
+        "rule_id": "TLS-NO-HTTPS",
+        "title": "HTTPS not available",
+        "severity": "high",
+        "count": 1,
+        "subdomains": 1
+      },
+      {
+        "rule_id": "CKE-NO-SECURE",
+        "title": "Cookie without Secure flag",
+        "severity": "medium",
+        "count": 4,
+        "subdomains": 4
+      },
+      {
+        "rule_id": "HDR-CSP-MISSING",
+        "title": "Content-Security-Policy header missing",
+        "severity": "medium",
+        "count": 3,
+        "subdomains": 3
+      },
+      {
+        "rule_id": "CKE-SESSION-NO-HTTPONLY",
+        "title": "Session cookie without HttpOnly flag",
+        "severity": "medium",
+        "count": 2,
+        "subdomains": 2
+      },
+      {
+        "rule_id": "DISC-STACK-TRACE",
+        "title": "Stack trace or exception dump disclosed",
+        "severity": "medium",
+        "count": 2,
+        "subdomains": 2
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage": "S1",
+      "name": "Scope & authorisation",
+      "status": "completed",
+      "hosts": 0,
+      "runs": 1,
+      "duration_ms": 0,
+      "counts": {
+        "targets": 5,
+        "rejected": 2
+      }
+    },
+    {
+      "stage": "S2",
+      "name": "Passive reconnaissance",
+      "status": "completed",
+      "hosts": 5,
+      "runs": 5,
+      "duration_ms": 1857,
+      "counts": {
+        "findings": 74,
+        "tools": 0
+      }
+    },
+    {
+      "stage": "S3",
+      "name": "Application map",
+      "status": "completed",
+      "hosts": 5,
+      "runs": 5,
+      "duration_ms": 0,
+      "counts": {
+        "endpoints": 13,
+        "parameterised": 0,
+        "parameters": 6
+      }
+    },
+    {
+      "stage": "S4",
+      "name": "Phase controllers",
+      "status": "skipped",
+      "hosts": 5,
+      "runs": 0,
+      "duration_ms": 0,
+      "counts": {}
+    },
+    {
+      "stage": "S5",
+      "name": "Correlation & confirmation",
+      "status": "completed",
+      "hosts": 5,
+      "runs": 5,
+      "duration_ms": 1,
+      "counts": {
+        "raw": 74,
+        "admitted": 65,
+        "queued": 7,
+        "confirmed": 0
+      }
+    },
+    {
+      "stage": "S6",
+      "name": "Risk & report",
+      "status": "completed",
+      "hosts": 5,
+      "runs": 6,
+      "duration_ms": 0,
+      "counts": {
+        "findings": 65,
+        "retest": 7,
+        "reachable": 5
+      }
+    }
+  ],
+  "run_log": [
+    {
+      "seq": 1,
+      "at": "2026-11-22T12:30:53.843625Z",
+      "stage": "S1",
+      "status": "started",
+      "subdomain": null,
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 2,
+      "at": "2026-11-22T12:30:53.844437Z",
+      "stage": "S1",
+      "status": "completed",
+      "subdomain": null,
+      "round": 0,
+      "detail": "authorisation DEMO-ACME-2026-001; budget 10 req/s per host, 5 hosts in parallel, 600s per tool; passive mode",
+      "counts": {
+        "targets": 5,
+        "rejected": 2
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 3,
+      "at": "2026-11-22T12:30:53.844587Z",
+      "stage": "S2",
+      "status": "started",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 4,
+      "at": "2026-11-22T12:30:53.844625Z",
+      "stage": "S2",
+      "status": "started",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 5,
+      "at": "2026-11-22T12:30:53.844646Z",
+      "stage": "S2",
+      "status": "started",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 6,
+      "at": "2026-11-22T12:30:53.844663Z",
+      "stage": "S2",
+      "status": "started",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 7,
+      "at": "2026-11-22T12:30:53.844678Z",
+      "stage": "S2",
+      "status": "started",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 8,
+      "at": "2026-11-22T12:30:54.151149Z",
+      "stage": "S2",
+      "status": "completed",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "findings": 9,
+        "tools": 0
+      },
+      "duration_ms": 306
+    },
+    {
+      "seq": 9,
+      "at": "2026-11-22T12:30:54.151180Z",
+      "stage": "S3",
+      "status": "started",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 10,
+      "at": "2026-11-22T12:30:54.151273Z",
+      "stage": "S3",
+      "status": "completed",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "endpoints": 1,
+        "parameterised": 0,
+        "parameters": 0
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 11,
+      "at": "2026-11-22T12:30:54.151286Z",
+      "stage": "S4",
+      "status": "started",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 12,
+      "at": "2026-11-22T12:30:54.151305Z",
+      "stage": "S4",
+      "status": "skipped",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "passive mode: no active engines selected",
+      "counts": {},
+      "duration_ms": 0
+    },
+    {
+      "seq": 13,
+      "at": "2026-11-22T12:30:54.151316Z",
+      "stage": "S5",
+      "status": "started",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 14,
+      "at": "2026-11-22T12:30:54.152683Z",
+      "stage": "S5",
+      "status": "completed",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "raw": 9,
+        "admitted": 9,
+        "queued": 0,
+        "confirmed": 0
+      },
+      "duration_ms": 1
+    },
+    {
+      "seq": 15,
+      "at": "2026-11-22T12:30:54.152703Z",
+      "stage": "S6",
+      "status": "started",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 16,
+      "at": "2026-11-22T12:30:54.153016Z",
+      "stage": "S6",
+      "status": "completed",
+      "subdomain": "api.acme-corp.example",
+      "round": 0,
+      "detail": "score 53, grade F",
+      "counts": {
+        "findings": 9
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 17,
+      "at": "2026-11-22T12:30:54.162654Z",
+      "stage": "S2",
+      "status": "completed",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "findings": 17,
+        "tools": 0
+      },
+      "duration_ms": 317
+    },
+    {
+      "seq": 18,
+      "at": "2026-11-22T12:30:54.162667Z",
+      "stage": "S3",
+      "status": "started",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 19,
+      "at": "2026-11-22T12:30:54.162802Z",
+      "stage": "S3",
+      "status": "completed",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "endpoints": 3,
+        "parameterised": 0,
+        "parameters": 2
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 20,
+      "at": "2026-11-22T12:30:54.162808Z",
+      "stage": "S4",
+      "status": "started",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 21,
+      "at": "2026-11-22T12:30:54.162813Z",
+      "stage": "S4",
+      "status": "skipped",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "passive mode: no active engines selected",
+      "counts": {},
+      "duration_ms": 0
+    },
+    {
+      "seq": 22,
+      "at": "2026-11-22T12:30:54.162817Z",
+      "stage": "S5",
+      "status": "started",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 23,
+      "at": "2026-11-22T12:30:54.163253Z",
+      "stage": "S5",
+      "status": "completed",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "raw": 17,
+        "admitted": 16,
+        "queued": 1,
+        "confirmed": 0
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 24,
+      "at": "2026-11-22T12:30:54.163262Z",
+      "stage": "S5",
+      "status": "info",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 1,
+      "detail": "re-test loop closed: no untried engine/endpoint hypothesis for 1 queued candidate(s)",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 25,
+      "at": "2026-11-22T12:30:54.163265Z",
+      "stage": "S6",
+      "status": "started",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 26,
+      "at": "2026-11-22T12:30:54.163359Z",
+      "stage": "S6",
+      "status": "completed",
+      "subdomain": "legacy.acme-corp.example",
+      "round": 0,
+      "detail": "score 20, grade F",
+      "counts": {
+        "findings": 16
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 27,
+      "at": "2026-11-22T12:30:54.253109Z",
+      "stage": "S2",
+      "status": "completed",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "findings": 4,
+        "tools": 0
+      },
+      "duration_ms": 408
+    },
+    {
+      "seq": 28,
+      "at": "2026-11-22T12:30:54.253146Z",
+      "stage": "S3",
+      "status": "started",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 29,
+      "at": "2026-11-22T12:30:54.253651Z",
+      "stage": "S3",
+      "status": "completed",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "endpoints": 5,
+        "parameterised": 0,
+        "parameters": 2
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 30,
+      "at": "2026-11-22T12:30:54.253669Z",
+      "stage": "S4",
+      "status": "started",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 31,
+      "at": "2026-11-22T12:30:54.253682Z",
+      "stage": "S4",
+      "status": "skipped",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "passive mode: no active engines selected",
+      "counts": {},
+      "duration_ms": 0
+    },
+    {
+      "seq": 32,
+      "at": "2026-11-22T12:30:54.253691Z",
+      "stage": "S5",
+      "status": "started",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 33,
+      "at": "2026-11-22T12:30:54.254314Z",
+      "stage": "S5",
+      "status": "completed",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "raw": 4,
+        "admitted": 4,
+        "queued": 0,
+        "confirmed": 0
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 34,
+      "at": "2026-11-22T12:30:54.254331Z",
+      "stage": "S6",
+      "status": "started",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 35,
+      "at": "2026-11-22T12:30:54.254474Z",
+      "stage": "S6",
+      "status": "completed",
+      "subdomain": "www.acme-corp.example",
+      "round": 0,
+      "detail": "score 94, grade A",
+      "counts": {
+        "findings": 4
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 36,
+      "at": "2026-11-22T12:30:54.257195Z",
+      "stage": "S2",
+      "status": "completed",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "findings": 25,
+        "tools": 0
+      },
+      "duration_ms": 412
+    },
+    {
+      "seq": 37,
+      "at": "2026-11-22T12:30:54.257205Z",
+      "stage": "S3",
+      "status": "started",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 38,
+      "at": "2026-11-22T12:30:54.257334Z",
+      "stage": "S3",
+      "status": "completed",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "endpoints": 3,
+        "parameterised": 0,
+        "parameters": 2
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 39,
+      "at": "2026-11-22T12:30:54.257339Z",
+      "stage": "S4",
+      "status": "started",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 40,
+      "at": "2026-11-22T12:30:54.257342Z",
+      "stage": "S4",
+      "status": "skipped",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "passive mode: no active engines selected",
+      "counts": {},
+      "duration_ms": 0
+    },
+    {
+      "seq": 41,
+      "at": "2026-11-22T12:30:54.257345Z",
+      "stage": "S5",
+      "status": "started",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 42,
+      "at": "2026-11-22T12:30:54.257973Z",
+      "stage": "S5",
+      "status": "completed",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "raw": 25,
+        "admitted": 19,
+        "queued": 5,
+        "confirmed": 0
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 43,
+      "at": "2026-11-22T12:30:54.257983Z",
+      "stage": "S5",
+      "status": "info",
+      "subdomain": "app.acme-corp.example",
+      "round": 1,
+      "detail": "re-test loop closed: no untried engine/endpoint hypothesis for 5 queued candidate(s)",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 44,
+      "at": "2026-11-22T12:30:54.257986Z",
+      "stage": "S6",
+      "status": "started",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 45,
+      "at": "2026-11-22T12:30:54.258060Z",
+      "stage": "S6",
+      "status": "completed",
+      "subdomain": "app.acme-corp.example",
+      "round": 0,
+      "detail": "score 43, grade F",
+      "counts": {
+        "findings": 19
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 46,
+      "at": "2026-11-22T12:30:54.259016Z",
+      "stage": "S2",
+      "status": "completed",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "findings": 19,
+        "tools": 0
+      },
+      "duration_ms": 414
+    },
+    {
+      "seq": 47,
+      "at": "2026-11-22T12:30:54.259021Z",
+      "stage": "S3",
+      "status": "started",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 48,
+      "at": "2026-11-22T12:30:54.259072Z",
+      "stage": "S3",
+      "status": "completed",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "endpoints": 1,
+        "parameterised": 0,
+        "parameters": 0
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 49,
+      "at": "2026-11-22T12:30:54.259076Z",
+      "stage": "S4",
+      "status": "started",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 50,
+      "at": "2026-11-22T12:30:54.259079Z",
+      "stage": "S4",
+      "status": "skipped",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "passive mode: no active engines selected",
+      "counts": {},
+      "duration_ms": 0
+    },
+    {
+      "seq": 51,
+      "at": "2026-11-22T12:30:54.259082Z",
+      "stage": "S5",
+      "status": "started",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 52,
+      "at": "2026-11-22T12:30:54.259495Z",
+      "stage": "S5",
+      "status": "completed",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {
+        "raw": 19,
+        "admitted": 17,
+        "queued": 1,
+        "confirmed": 0
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 53,
+      "at": "2026-11-22T12:30:54.259500Z",
+      "stage": "S5",
+      "status": "info",
+      "subdomain": "admin.acme-corp.example",
+      "round": 1,
+      "detail": "re-test loop closed: no untried engine/endpoint hypothesis for 1 queued candidate(s)",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 54,
+      "at": "2026-11-22T12:30:54.259503Z",
+      "stage": "S6",
+      "status": "started",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 55,
+      "at": "2026-11-22T12:30:54.259566Z",
+      "stage": "S6",
+      "status": "completed",
+      "subdomain": "admin.acme-corp.example",
+      "round": 0,
+      "detail": "score 0, grade F",
+      "counts": {
+        "findings": 17
+      },
+      "duration_ms": 0
+    },
+    {
+      "seq": 56,
+      "at": "2026-11-22T12:30:54.259631Z",
+      "stage": "S6",
+      "status": "started",
+      "subdomain": null,
+      "round": 0,
+      "detail": "",
+      "counts": {},
+      "duration_ms": null
+    },
+    {
+      "seq": 57,
+      "at": "2026-11-22T12:30:54.259805Z",
+      "stage": "S6",
+      "status": "completed",
+      "subdomain": null,
+      "round": 0,
+      "detail": "overall grade F",
+      "counts": {
+        "retest": 7,
+        "reachable": 5
+      },
+      "duration_ms": 0
+    }
+  ],
+  "error": null,
+  "demo": true
+}
